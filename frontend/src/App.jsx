@@ -11,6 +11,7 @@ import CodeEditor from './CodeEditor';
 import UserAuth from './UserAuth';
 import Calendar from './Calendar';
 import Canteen from './Canteen';
+import Railway from './Railway';
 import './App.css';
 
 function App() {
@@ -79,6 +80,7 @@ function App() {
                         <Route path="codeEditor" element={<CodeEditor />} />
                         <Route path="calendar" element={<Calendar />} />
                         <Route path="canteen" element={<Canteen />} />
+                        <Route path="railway" element={<Railway />} />
                     </Route>
                 </>
             ) : (
