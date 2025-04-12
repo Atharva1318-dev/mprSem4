@@ -10,6 +10,7 @@ import StudentHome from './StudentHome';
 import CodeEditor from './CodeEditor';
 import UserAuth from './UserAuth';
 import Calendar from './Calendar';
+import Canteen from './Canteen';
 import './App.css';
 
 function App() {
@@ -77,6 +78,7 @@ function App() {
                         <Route path="getPdfs" element={<GetPdfs />} />
                         <Route path="codeEditor" element={<CodeEditor />} />
                         <Route path="calendar" element={<Calendar />} />
+                        <Route path="canteen" element={<Canteen />} />
                     </Route>
                 </>
             ) : (

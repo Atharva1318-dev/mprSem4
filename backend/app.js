@@ -18,6 +18,12 @@ const upload = multer({
 
 require('dotenv').config()
 
+//rishabh's code
+// const twilio = require('twilio');
+
+
+
+
 const app = express();
 
 mongoose.connect(process.env.ATLASDB_URL)
@@ -159,6 +165,29 @@ app.get("/events", verifyUser, async (req, res) => {
         res.status(500).json({ success: false, message: "Error fetching events" });
     }
 });
+
+
+// rishabh's code
+// const accountSid = process.env.account_Sid;
+// const authToken = process.env.auth_Token;
+
+// const client = twilio(accountSid, authToken);
+// app.post('/send-sms',(req,res)=>{
+//     client.messages.create({
+//         body:"Your order has been placed successfully bring bill and collect your order after 5 minutes",
+//         from:"whatsapp:+14155238886",
+//         to:"whatsapp:+918433943227"
+
+//     }).then((response) => {
+//         console.log('Message sent:', response.sid);
+//         res.status(200).json({ success: true, sid: response.sid });
+//     })
+//     .catch((error) => {
+//         console.error('Error sending message:', error);
+//         res.status(500).json({ success: false, error: error.message });
+//     });
+// })
+
 
 app.get("/", (req, res) => {
     res.send("hello");
