@@ -1,25 +1,45 @@
-"use client";
-
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { gsap } from 'gsap';
+import { useEffect, useRef, useState } from "react";
 import { BookOpen, Calendar, Code, Train, Coffee } from "lucide-react";
-// Ensure the path below is correct for your project structure
 import studentImg from "../src/assets/student.png";
+import studentMobileImg from "../src/assets/studentMobile.png";
+import { useGSAP } from "@gsap/react";
 
 export default function StudentHome({ username, onLogout }) {
     const [isOpen, setIsOpen] = useState(false);
 
+    const leftColRef = useRef(null);
+    const rightColRef = useRef(null);
+    const tl = gsap.timeline({
+        delay: 2,
+    });
+    useGSAP(() => {
+        tl.from(leftColRef.current, {
+            x: -100,
+            opacity: 0,
+            duration: 1,
+            ease: 'power3.out',
+        });
+        tl.from(rightColRef.current, {
+            x: 100,
+            opacity: 0,
+            duration: 0.9,
+            ease: 'power3.out',
+        }, '-=0.7');
+    }, []);
+
     return (
         <div className="flex flex-col min-h-screen w-screen bg-white">
-            <div className="container-fluid px-5 py-0 w-full mx-auto">
+            <div className="container-fluid px-5 w-full mx-auto">
                 <main className="w-full px-2">
                     {/* Hero Section */}
                     <section className="relative overflow-visible">
-                        <div className="grid md:grid-cols-2 gap-4 items-center">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
 
-                            <div className="z-10">
+                            <div className="z-10" ref={leftColRef}>
                                 <p className="text-gray-600 mb-2">Smart digital campus</p>
-                                <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8">
+                                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8">
                                     Become
                                     <br />
                                     a better student
@@ -36,9 +56,8 @@ export default function StudentHome({ username, onLogout }) {
                                         </button>
                                     </div> : null}
                             </div>
-
                             {/* Right Side: Student Image with Background Elements */}
-                            <div className="relative z-10 ml-auto w-full md:max-w-2xl lg:max-w-3xl">
+                            <div className="relative z-10 mx-auto w-full md:max-w-2xl lg:max-w-3xl" ref={rightColRef}>
                                 {/* Circular Animated Text behind the student image */}
                                 <div className="absolute inset-0 flex items-center justify-center -z-20">
                                     <div className="w-[750px] h-[750px] animate-[spin_20s_linear_infinite]">
@@ -58,17 +77,19 @@ export default function StudentHome({ username, onLogout }) {
                                         </svg>
                                     </div>
                                 </div>
-
                                 {/* Orange circle behind the student image */}
                                 <div className="absolute -z-10 right-0 bottom-0 w-[400px] h-[400px] bg-orange-400 rounded-full"></div>
-
                                 {/* Student Image with custom larger height */}
                                 <img
                                     src={studentImg}
                                     alt="Student image"
-                                    className="relative z-20 object-cover w-full h-[700px]"
+                                    className="relative z-20 object-cover w-full h-[700px] hidden md:block"
                                 />
-
+                                <img
+                                    src={studentMobileImg}
+                                    alt="Student image"
+                                    className="relative z-20 object-cover w-full h-[700px] block md:hidden"
+                                />
                                 {/* Floating Student Chart */}
                                 <div className="absolute top-20 right-0 bg-white rounded-xl shadow-lg p-4 z-20">
                                     <div className="text-sm text-gray-500">Student Chart</div>
@@ -81,7 +102,6 @@ export default function StudentHome({ username, onLogout }) {
                                         <div className="w-4 h-7 bg-orange-400 rounded-sm"></div>
                                     </div>
                                 </div>
-
                                 {/* Floating 15k+ Total Students Box */}
                                 <div className="absolute bottom-20 right-10 bg-white rounded-xl shadow-lg p-4 z-20">
                                     <div className="flex items-center gap-3">
@@ -131,8 +151,7 @@ export default function StudentHome({ username, onLogout }) {
                                 students.
                             </p>
                         </div>
-
-                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                             {/* Railway Concession Feature */}
                             <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-2xl transition-shadow">
                                 <div className="bg-orange-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
@@ -161,7 +180,6 @@ export default function StudentHome({ username, onLogout }) {
                                     </svg>
                                 </Link>
                             </div>
-
                             {/* Notes App Feature */}
                             <div className="bg-white p-8 rounded-2xl shadow-md hover:shadow-2xl transition-shadow">
                                 <div className="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
@@ -190,7 +208,6 @@ export default function StudentHome({ username, onLogout }) {
                                     </svg>
                                 </Link>
                             </div>
-
                             {/* E-Calendar Feature */}
                             <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-2xl transition-shadow">
                                 <div className="bg-orange-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
@@ -216,7 +233,6 @@ export default function StudentHome({ username, onLogout }) {
                                     </svg>
                                 </Link>
                             </div>
-
                             {/* Code Editor Feature */}
                             <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-2xl transition-shadow">
                                 <div className="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
@@ -245,7 +261,6 @@ export default function StudentHome({ username, onLogout }) {
                                     </svg>
                                 </Link>
                             </div>
-
                             {/* Digital Canteen Feature */}
                             <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-2xl transition-shadow">
                                 <div className="bg-orange-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
@@ -274,7 +289,6 @@ export default function StudentHome({ username, onLogout }) {
                                     </svg>
                                 </Link>
                             </div>
-
                             {/* Support Feature */}
                             <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-2xl transition-shadow">
                                 <div className="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
@@ -318,7 +332,6 @@ export default function StudentHome({ username, onLogout }) {
                             </div>
                         </div>
                     </section>
-
                     {/* Experience the Workflow Section */}
                     <section className="py-24 relative overflow-hidden">
                         <div className="absolute -z-10 right-0 top-0 w-[600px] h-[600px] bg-orange-400 rounded-full opacity-10"></div>
@@ -333,7 +346,6 @@ export default function StudentHome({ username, onLogout }) {
                                     Let your campus life be more organized and efficient with our integrated digital tools.
                                     Focus on learning and growing while we handle the rest.
                                 </p>
-
                                 <div className="space-y-6">
                                     <div className="flex items-start gap-4">
                                         <div className="bg-orange-100 p-3 rounded-full mt-1">
@@ -359,7 +371,6 @@ export default function StudentHome({ username, onLogout }) {
                                             </p>
                                         </div>
                                     </div>
-
                                     <div className="flex items-start gap-4">
                                         <div className="bg-purple-100 p-3 rounded-full mt-1">
                                             <svg
@@ -384,7 +395,6 @@ export default function StudentHome({ username, onLogout }) {
                                             </p>
                                         </div>
                                     </div>
-
                                     <div className="flex items-start gap-4">
                                         <div className="bg-orange-100 p-3 rounded-full mt-1">
                                             <svg
@@ -411,7 +421,6 @@ export default function StudentHome({ username, onLogout }) {
                                     </div>
                                 </div>
                             </div>
-
                             <div className="relative">
                                 <img
                                     src="/placeholder.svg?height=500&width=500"
@@ -420,7 +429,6 @@ export default function StudentHome({ username, onLogout }) {
                                     height={500}
                                     className="mx-auto rounded-xl shadow-lg"
                                 />
-
                                 {/* Floating Productivity Element */}
                                 <div className="absolute -top-10 -left-10 bg-white rounded-xl shadow-lg p-4 z-20">
                                     <div className="flex items-center gap-3">
@@ -446,7 +454,6 @@ export default function StudentHome({ username, onLogout }) {
                                         </div>
                                     </div>
                                 </div>
-
                                 {/* Floating Time Saved Element */}
                                 <div className="absolute -bottom-10 -right-0 bg-white rounded-xl shadow-lg p-4 z-50">
                                     <div className="flex items-center gap-3">
@@ -475,7 +482,6 @@ export default function StudentHome({ username, onLogout }) {
                             </div>
                         </div>
                     </section>
-
                     {/* Call-to-Action Section */}
                     <section className="py-24 bg-black text-white rounded-3xl">
                         <div className="container mx-auto px-4 text-center">
@@ -490,7 +496,6 @@ export default function StudentHome({ username, onLogout }) {
                             </button>
                         </div>
                     </section>
-
                     {/* Trusted by Leading Institutions Section */}
                     <section className="py-24">
                         <div className="text-center mb-16">
@@ -499,7 +504,6 @@ export default function StudentHome({ username, onLogout }) {
                                 Join the community of educational institutions that trust our platform.
                             </p>
                         </div>
-
                         <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24">
                             <img
                                 src="/placeholder.svg?height=50&width=150"
@@ -531,8 +535,17 @@ export default function StudentHome({ username, onLogout }) {
                             />
                         </div>
                     </section>
+                    <div className="fixed bottom-5 right-5 z-[1050] fab_button">
+                        <Link
+                            to="chatbot"
+                            className="bg-red-600 hover:bg-red-700 text-white text-lg font-bold py-3 px-4 rounded-full shadow"
+                            title="Add New Listing"
+                        >
+                            AI
+                        </Link>
+                    </div>
                 </main>
-            </div>
-        </div>
+            </div >
+        </div >
     );
 }
