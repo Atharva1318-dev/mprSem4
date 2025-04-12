@@ -16,7 +16,7 @@ export default function StudentLandingPage({ username, onLogout }) {
             <header className="sticky top-0 z-40 bg-white flex items-center justify-between px-4 py-5 mx-auto mb-6 shadow">
                 <Link to="/dashboard"><div className="font-bold text-2xl">EduWorld</div></Link>
                 <nav className=" hidden md:flex items-center space-x-8 bg-white">
-                    <Link href="#" className="relative group text-gray-700 hover:text-black">
+                    <Link to="railway" className="relative group text-gray-700 hover:text-black">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="inline lucide lucide-train-front"><path d="M8 3.1V7a4 4 0 0 0 8 0V3.1" /><path d="m9 15-1-1" /><path d="m15 15 1-1" /><path d="M9 19c-2.8 0-5-2.2-5-5v-4a8 8 0 0 1 16 0v4c0 2.8-2.2 5-5 5Z" /><path d="m8 19-2 3" /><path d="m16 19 2 3" /></svg>
                         Railway Concession
                         <span className="absolute bottom-0 left-0 w-full h-0.5 bg-black transform scale-x-0 transition-transform duration-200 ease-out group-hover:scale-x-100" />
