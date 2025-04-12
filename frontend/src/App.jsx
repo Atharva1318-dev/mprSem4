@@ -11,6 +11,10 @@ import CodeEditor from './CodeEditor';
 import UserAuth from './UserAuth';
 import Calendar from './Calendar';
 import Canteen from './Canteen';
+import Railway from './Railway';
+import HomeChat from './HomeChat';
+import VideoCallHome from './VideoCallHome';
+import VideocallRoom from './VideocallRoom';
 import './App.css';
 
 function App() {
@@ -69,6 +73,8 @@ function App() {
                         <Route index element={<TeacherHome username={username} onLogout={Logout} />} />
                         <Route path="pdfForm" element={<PdfForm username={username} />} />
                         <Route path="calendar" element={<Calendar />} />
+                        <Route path="videocall" element={<VideoCallHome />} />
+                        <Route path="videocall/room/:id" element={<VideocallRoom />} />
                     </Route>
                 </>
             ) : role === "student" ? (
@@ -79,6 +85,8 @@ function App() {
                         <Route path="codeEditor" element={<CodeEditor />} />
                         <Route path="calendar" element={<Calendar />} />
                         <Route path="canteen" element={<Canteen />} />
+                        <Route path="railway" element={<Railway />} />
+                        <Route path="chatbot" element={<HomeChat />} />
                     </Route>
                 </>
             ) : (
