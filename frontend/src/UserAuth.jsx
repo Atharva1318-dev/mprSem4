@@ -1,168 +1,352 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { LogIn, UserPlus, Mail, Lock, User, ArrowRight } from 'lucide-react';
+"use client"
+
+import { useState } from "react"
+import { useNavigate } from "react-router-dom"
+import axios from "axios"
+import {
+    Box,
+    Button,
+    Card,
+    CardContent,
+    Container,
+    Divider,
+    IconButton,
+    InputAdornment,
+    Paper,
+    Stack,
+    TextField,
+    Typography,
+    useMediaQuery,
+} from "@mui/material"
+import { ThemeProvider, createTheme } from "@mui/material/styles"
+import EmailIcon from "@mui/icons-material/Email"
+import LockIcon from "@mui/icons-material/Lock"
+import PersonIcon from "@mui/icons-material/Person"
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward"
+import LoginIcon from "@mui/icons-material/Login"
+import PersonAddIcon from "@mui/icons-material/PersonAdd"
+import SchoolIcon from "@mui/icons-material/School"
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth"
+import LaptopIcon from "@mui/icons-material/Laptop"
+import LocalCafeIcon from "@mui/icons-material/LocalCafe"
+import VisibilityIcon from "@mui/icons-material/Visibility"
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff"
+
+// Create a custom theme with purple primary color
+const theme = createTheme({
+    palette: {
+        primary: {
+            main: "#7e57c2", // Purple
+            light: "#b085f5",
+            dark: "#4d2c91",
+            contrastText: "#ffffff",
+        },
+        secondary: {
+            main: "#f5f5f5",
+            light: "#ffffff",
+            dark: "#c2c2c2",
+            contrastText: "#000000",
+        },
+        background: {
+            default: "#f5f5f5",
+            paper: "#ffffff",
+        },
+    },
+    typography: {
+        fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+        h3: {
+            fontWeight: 700,
+        },
+        h4: {
+            fontWeight: 700,
+        },
+        h5: {
+            fontWeight: 600,
+        },
+        h6: {
+            fontWeight: 600,
+        },
+    },
+    components: {
+        MuiButton: {
+            styleOverrides: {
+                root: {
+                    textTransform: "none",
+                    borderRadius: 8,
+                    padding: "10px 24px",
+                },
+                contained: {
+                    boxShadow: "none",
+                },
+            },
+        },
+        MuiTextField: {
+            styleOverrides: {
+                root: {
+                    marginBottom: 16,
+                },
+            },
+        },
+        MuiCard: {
+            styleOverrides: {
+                root: {
+                    borderRadius: 16,
+                    boxShadow: "0 4px 20px rgba(0,0,0,0.08)",
+                },
+            },
+        },
+    },
+})
+
+// Feature chip component
+const FeatureChip = ({ icon, label }) => (
+    <Paper
+        elevation={0}
+        sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: 1,
+            px: 2,
+            py: 1,
+            borderRadius: 4,
+            backgroundColor: "rgba(255, 255, 255, 0.2)",
+            backdropFilter: "blur(8px)",
+        }}
+    >
+        {icon}
+        <Typography variant="body2" color="white">
+            {label}
+        </Typography>
+    </Paper>
+)
 
 const UserAuth = () => {
-    const [isLogin, setIsLogin] = useState(true);
-    const [username, setUsername] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const navigate = useNavigate();
+    const [isLogin, setIsLogin] = useState(true)
+    const [username, setUsername] = useState("")
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const [showPassword, setShowPassword] = useState(false)
+    const navigate = useNavigate()
+    const isMobile = useMediaQuery(theme.breakpoints.down("md"))
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        e.preventDefault()
         try {
             if (isLogin) {
                 // Login request
                 const { data } = await axios.post(
                     "http://localhost:8080/auth/login",
                     { email, password },
-                    { withCredentials: true }
-                );
-                console.log("Login response:", data);
+                    { withCredentials: true },
+                )
+                console.log("Login response:", data)
                 if (data.success) {
-                    navigate("/dashboard");
+                    navigate("/dashboard")
                 }
             } else {
                 // Signup request (role is forced to 'student' on the backend)
                 const { data } = await axios.post(
                     "http://localhost:8080/auth/signup",
                     { username, email, password },
-                    { withCredentials: true }
-                );
-                console.log("Signup response:", data);
+                    { withCredentials: true },
+                )
+                console.log("Signup response:", data)
                 if (data.success) {
-                    navigate("/dashboard");
+                    navigate("/dashboard")
                 }
             }
         } catch (error) {
-            console.error("Authentication error:", error);
+            console.error("Authentication error:", error)
         }
-    };
+    }
+
+    const handleClickShowPassword = () => {
+        setShowPassword(!showPassword)
+    }
 
     return (
-        <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-            <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-2xl shadow-lg">
-                <div className="text-center">
-                    <h2 className="mt-6 text-3xl font-extrabold text-gray-900">
-                        {isLogin ? 'Welcome back' : 'Create your account'}
-                    </h2>
-                    <p className="mt-2 text-sm text-gray-600">
-                        {isLogin ? 'Sign in to your account' : 'Start your educational journey'}
-                    </p>
-                </div>
+        <ThemeProvider theme={theme}>
+            <Box sx={{ minHeight: "100vh", display: "flex", flexDirection: { xs: "column", md: "row" } }}>
+                {/* Left side - Campus imagery */}
+                {!isMobile && (
+                    <Box
+                        sx={{
+                            position: "relative",
+                            width: { md: "60%", lg: "45%" },
+                            background: "linear-gradient(135deg, #9c27b0 0%, #673ab7 100%)",
+                        }}
+                    >
+                        <Box sx={{ position: "absolute", inset: 0, bgcolor: "rgba(0,0,0,0.2)", zIndex: 1 }} />
+                        <Box
+                            sx={{
+                                position: "absolute",
+                                inset: 0,
+                                backgroundImage: "url('../src/assets/loginImg.jpg')",
+                                backgroundSize: "cover",
+                                backgroundPosition: "center",
+                            }}
+                        />
+                        <Box
+                            sx={{
+                                position: "absolute",
+                                inset: 0,
+                                display: "flex",
+                                flexDirection: "column",
+                                justifyContent: "space-between",
+                                p: 6,
+                                zIndex: 2,
+                            }}
+                        >
+                            <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                                <SchoolIcon sx={{ color: "white", fontSize: 40 }} />
+                                <Typography variant="h5" color="white">
+                                    EduWorld
+                                </Typography>
+                            </Box>
+                            <Box sx={{ maxWidth: 500 }}>
+                                <Typography variant="h3" color="white" gutterBottom>
+                                    Your complete digital campus experience
+                                </Typography>
+                                <Typography variant="body1" color="white" sx={{ opacity: 0.9, mb: 4 }}>
+                                    Access all your campus resources, connect with peers, and stay organized with our all-in-one platform.
+                                </Typography>
+                                <Stack direction="row" spacing={2} flexWrap="wrap" useFlexGap sx={{ gap: 2 }}>
+                                    <FeatureChip icon={<CalendarMonthIcon sx={{ color: "white" }} />} label="Class Schedules" />
+                                    <FeatureChip icon={<LaptopIcon sx={{ color: "white" }} />} label="Online Learning" />
+                                    <FeatureChip icon={<LocalCafeIcon sx={{ color: "white" }} />} label="Campus Events" />
+                                </Stack>
+                            </Box>
+                        </Box>
+                    </Box>
+                )}
 
-                <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-                    <div className="space-y-4">
-                        {!isLogin && (
-                            <div>
-                                <label htmlFor="name" className="sr-only">Full Name</label>
-                                <div className="relative">
-                                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                        <User className="h-5 w-5 text-gray-400" />
-                                    </div>
-                                    <input
-                                        id="name"
-                                        name="name"
-                                        type="text"
+                {/* Right side - Auth forms */}
+                <Box
+                    sx={{
+                        flex: 1,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        p: { xs: 2, sm: 4, md: 6 },
+                        bgcolor: "background.default",
+                    }}
+                >
+                    <Container maxWidth="sm">
+                        <Card>
+                            <CardContent sx={{ p: 4 }}>
+                                <Typography variant="h4" gutterBottom>
+                                    {isLogin ? "Welcome back" : "Create your account"}
+                                </Typography>
+                                <Typography variant="body1" color="text.secondary" sx={{ mb: 4 }}>
+                                    {isLogin
+                                        ? "Sign in to your account to access your campus dashboard"
+                                        : "Start your educational journey"}
+                                </Typography>
+
+                                <form onSubmit={handleSubmit}>
+                                    {!isLogin && (
+                                        <TextField
+                                            fullWidth
+                                            label="Full Name"
+                                            placeholder="John Doe"
+                                            variant="outlined"
+                                            value={username}
+                                            onChange={(e) => setUsername(e.target.value)}
+                                            required
+                                            InputProps={{
+                                                startAdornment: (
+                                                    <InputAdornment position="start">
+                                                        <PersonIcon color="action" />
+                                                    </InputAdornment>
+                                                ),
+                                            }}
+                                        />
+                                    )}
+
+                                    <TextField
+                                        fullWidth
+                                        label="Email"
+                                        placeholder="name@example.com"
+                                        variant="outlined"
+                                        type="email"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
                                         required
-                                        value={username}
-                                        onChange={(e) => setUsername(e.target.value)}
-                                        className="appearance-none rounded-lg relative block w-full pl-10 pr-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-neutral-500 focus:border-neutral-500 sm:text-sm"
-                                        placeholder="Full Name"
+                                        InputProps={{
+                                            startAdornment: (
+                                                <InputAdornment position="start">
+                                                    <EmailIcon color="action" />
+                                                </InputAdornment>
+                                            ),
+                                        }}
                                     />
-                                </div>
-                            </div>
-                        )}
 
-                        <div>
-                            <label htmlFor="email" className="sr-only">Email address</label>
-                            <div className="relative">
-                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <Mail className="h-5 w-5 text-gray-400" />
-                                </div>
-                                <input
-                                    id="email"
-                                    name="email"
-                                    type="email"
-                                    required
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                    className="appearance-none rounded-lg relative block w-full pl-10 pr-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-neutral-500 focus:border-neutral-500 sm:text-sm"
-                                    placeholder="Email address"
-                                />
-                            </div>
-                        </div>
+                                    <TextField
+                                        fullWidth
+                                        label="Password"
+                                        variant="outlined"
+                                        type={showPassword ? "text" : "password"}
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        required
+                                        InputProps={{
+                                            startAdornment: (
+                                                <InputAdornment position="start">
+                                                    <LockIcon color="action" />
+                                                </InputAdornment>
+                                            ),
+                                            endAdornment: (
+                                                <InputAdornment position="end">
+                                                    <IconButton onClick={handleClickShowPassword} edge="end">
+                                                        {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                                                    </IconButton>
+                                                </InputAdornment>
+                                            ),
+                                        }}
+                                    />
 
-                        <div>
-                            <label htmlFor="password" className="sr-only">Password</label>
-                            <div className="relative">
-                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <Lock className="h-5 w-5 text-gray-400" />
-                                </div>
-                                <input
-                                    id="password"
-                                    name="password"
-                                    type="password"
-                                    required
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                    className="appearance-none rounded-lg relative block w-full pl-10 pr-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-neutral-500 focus:border-neutral-500 sm:text-sm"
-                                    placeholder="Password"
-                                />
-                            </div>
-                        </div>
-                    </div>
+                                    {isLogin && (
+                                        <Box sx={{ display: "flex", justifyContent: "flex-end", mb: 3 }}>
+                                            <Typography variant="body2" color="primary" sx={{ cursor: "pointer" }} component="a" href="#">
+                                                Forgot your password?
+                                            </Typography>
+                                        </Box>
+                                    )}
 
-                    {isLogin && (
-                        <div className="flex items-center justify-end">
-                            <div className="text-sm">
-                                <a href="#" className="font-medium text-neutral-600 hover:text-neutral-500">
-                                    Forgot your password?
-                                </a>
-                            </div>
-                        </div>
-                    )}
+                                    <Button
+                                        variant="contained"
+                                        color="primary"
+                                        fullWidth
+                                        size="large"
+                                        type="submit"
+                                        startIcon={isLogin ? <LoginIcon /> : <PersonAddIcon />}
+                                        endIcon={<ArrowForwardIcon />}
+                                        sx={{ mt: 2 }}
+                                    >
+                                        {isLogin ? "Sign in" : "Sign up"}
+                                    </Button>
+                                </form>
 
-                    <div>
-                        <button
-                            type="submit"
-                            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-neutral-700 hover:bg-neutral-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neutral-500"
-                        >
-                            <span className="absolute left-0 inset-y-0 flex items-center pl-3">
-                                {isLogin ? <LogIn className="h-5 w-5" /> : <UserPlus className="h-5 w-5" />}
-                            </span>
-                            {isLogin ? 'Sign in' : 'Sign up'}
-                            <ArrowRight className="h-5 w-5 ml-2" />
-                        </button>
-                    </div>
-                </form>
+                                <Box sx={{ mt: 4 }}>
+                                    <Divider>
+                                        <Typography variant="body2" color="text.secondary" sx={{ px: 2 }}>
+                                            {isLogin ? "Don't have an account?" : "Already have an account?"}
+                                        </Typography>
+                                    </Divider>
 
-                <div className="mt-6">
-                    <div className="relative">
-                        <div className="absolute inset-0 flex items-center">
-                            <div className="w-full border-t border-gray-300"></div>
-                        </div>
-                        <div className="relative flex justify-center text-sm">
-                            <span className="px-2 bg-white text-gray-500">
-                                {isLogin ? "Don't have an account?" : "Already have an account?"}
-                            </span>
-                        </div>
-                    </div>
+                                    <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
+                                        <Button variant="text" color="primary" onClick={() => setIsLogin(!isLogin)}>
+                                            {isLogin ? "Sign up" : "Sign in"}
+                                        </Button>
+                                    </Box>
+                                </Box>
+                            </CardContent>
+                        </Card>
+                    </Container>
+                </Box>
+            </Box>
+        </ThemeProvider>
+    )
+}
 
-                    <div className="mt-6 text-center">
-                        <button
-                            onClick={() => setIsLogin(!isLogin)}
-                            className="font-medium text-neutral-600 hover:text-neutral-500"
-                        >
-                            {isLogin ? 'Sign up' : 'Sign in'}
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
-};
-
-export default UserAuth;
+export default UserAuth

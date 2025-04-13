@@ -5,12 +5,19 @@ import { BookOpen, Calendar, Code, Train, Coffee } from "lucide-react";
 import studentImg from "../src/assets/student.png";
 import studentMobileImg from "../src/assets/studentMobile.png";
 import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 export default function StudentHome({ username, onLogout }) {
     const [isOpen, setIsOpen] = useState(false);
 
     const leftColRef = useRef(null);
     const rightColRef = useRef(null);
+    //ye mulitple cheezo ko select karne mai kaam nahi aega, ek specific ko point karnekeliye nahi isliye class selector use karo
+    //const features = useRef(null);
+
+    const featuresSection = useRef(null);
+
     const tl = gsap.timeline({
         delay: 2,
     });
@@ -21,12 +28,31 @@ export default function StudentHome({ username, onLogout }) {
             duration: 1,
             ease: 'power3.out',
         });
+
         tl.from(rightColRef.current, {
             x: 100,
             opacity: 0,
             duration: 0.9,
             ease: 'power3.out',
         }, '-=0.7');
+
+        tl.from(".features", {
+            scrollTrigger: {
+                scroller: "body",
+                trigger: ".featuresSection",
+                start: "top 47%",
+                end: "top 0%",
+                markers: true,
+                scrub: true,
+            },
+            y: 30,
+            opacity: 0,
+            duration: 1.5,
+            ease: 'power.in',
+            stagger: 0.5,
+            toggleActions: "play reverse play reverse"
+        });
+
     }, []);
 
     return (
@@ -143,8 +169,8 @@ export default function StudentHome({ username, onLogout }) {
                     </section>
 
                     {/* Digital Campus Tools Section */}
-                    <section className="py-24">
-                        <div className="text-center mb-16">
+                    <section className="py-24 featuresSection">
+                        <div className="text-center mb-16 features" >
                             <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Digital Campus Tools</h2>
                             <p className="text-gray-600 max-w-2xl mx-auto">
                                 Simplify your campus life with our integrated digital tools designed specifically for
@@ -153,7 +179,7 @@ export default function StudentHome({ username, onLogout }) {
                         </div>
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                             {/* Railway Concession Feature */}
-                            <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-2xl transition-shadow">
+                            <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-2xl transition-shadow features">
                                 <div className="bg-orange-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
                                     <Train className="h-8 w-8 text-orange-600" />
                                 </div>
@@ -181,7 +207,7 @@ export default function StudentHome({ username, onLogout }) {
                                 </Link>
                             </div>
                             {/* Notes App Feature */}
-                            <div className="bg-white p-8 rounded-2xl shadow-md hover:shadow-2xl transition-shadow">
+                            <div className="bg-white p-8 rounded-2xl shadow-md hover:shadow-2xl transition-shadow features">
                                 <div className="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
                                     <BookOpen className="h-8 w-8 text-purple-600" />
                                 </div>
@@ -209,7 +235,7 @@ export default function StudentHome({ username, onLogout }) {
                                 </Link>
                             </div>
                             {/* E-Calendar Feature */}
-                            <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-2xl transition-shadow">
+                            <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-2xl transition-shadow features">
                                 <div className="bg-orange-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
                                     <Calendar className="h-8 w-8 text-orange-600" />
                                 </div>
@@ -234,7 +260,7 @@ export default function StudentHome({ username, onLogout }) {
                                 </Link>
                             </div>
                             {/* Code Editor Feature */}
-                            <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-2xl transition-shadow">
+                            <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-2xl transition-shadow features">
                                 <div className="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
                                     <Code className="h-8 w-8 text-purple-600" />
                                 </div>
@@ -262,7 +288,7 @@ export default function StudentHome({ username, onLogout }) {
                                 </Link>
                             </div>
                             {/* Digital Canteen Feature */}
-                            <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-2xl transition-shadow">
+                            <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-2xl transition-shadow features">
                                 <div className="bg-orange-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
                                     <Coffee className="h-8 w-8 text-orange-600" />
                                 </div>
@@ -290,7 +316,7 @@ export default function StudentHome({ username, onLogout }) {
                                 </Link>
                             </div>
                             {/* Support Feature */}
-                            <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-2xl transition-shadow">
+                            <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-2xl transition-shadow features">
                                 <div className="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -538,8 +564,7 @@ export default function StudentHome({ username, onLogout }) {
                     <div className="fixed bottom-5 right-5 z-[1050] fab_button">
                         <Link
                             to="chatbot"
-                            className="bg-red-600 hover:bg-red-700 text-white text-lg font-bold py-3 px-4 rounded-full shadow"
-                            title="Add New Listing"
+                            className="bg-neutral-900 hover:bg-red-700 text-white text-lg px-4 py-4 rounded-full"
                         >
                             AI
                         </Link>

@@ -1,6 +1,6 @@
 
-import React, { useContext } from "react";
-import { RiImageAiLine, RiImageAddLine } from "react-icons/ri";
+import React, { useContext, useState, useEffect } from "react";
+import { RiImageAiLine, RiImageAddLine, RiSendPlaneFill, RiCloseLine } from "react-icons/ri";
 import { MdChatBubbleOutline } from "react-icons/md";
 import { FiPlus } from "react-icons/fi";
 import { FaArrowUpLong } from "react-icons/fa6";
@@ -26,6 +26,17 @@ function HomeChat() {
     genImgUrl,
     setGenImgUrl,
   } = useContext(dataContext);
+
+
+  const [greeting, setGreeting] = useState("")
+  const [isTyping, setIsTyping] = useState(false)
+
+  useEffect(() => {
+    const hour = new Date().getHours()
+    if (hour < 12) setGreeting("Good morning")
+    else if (hour < 18) setGreeting("Good afternoon")
+    else setGreeting("Good evening")
+  }, [])
 
   async function handleSubmit(e) {
     setStartRes(true);
@@ -74,137 +85,171 @@ function HomeChat() {
   }
 
   return (
-    <div className="w-full h-screen overflow-hidden bg-black text-white">
-      <nav className="w-full h-20 flex items-center justify-start px-8 text-2xl font-bold cursor-pointer">
-        {/* <div
-          onClick={() => {
-            setStartRes(false);
-            setFeature("chat");
-            user.data = null;
-            user.mime_type = null;
-            user.imgUrl = null;
-            setPopUP(false);
-          }}
-        >
-          Smart AI Bot
-        </div> */}
-      </nav>
-      <input
-        type="file"
-        accept="image/*"
-        hidden
-        id="inputImg"
-        onChange={handleImage}
-      />
-      {!startRes ? (
-        <div className="w-full h-[70%] flex flex-col items-center justify-center gap-5 px-5">
-          <span id="tag" className="text-4xl">
-            What can I help with?
-          </span>
-          <div className="flex items-center justify-center gap-5 flex-wrap">
-            <div
-              className="flex items-center justify-center gap-2 px-5 py-2 border-2 border-white rounded-full cursor-pointer hover:bg-white/10"
-              onClick={() => {
-                document.getElementById("inputImg").click();
-              }}
-            >
-              <RiImageAddLine className="w-6 h-6 text-green-400" />
-              <span>Upload Image</span>
+    <div className="w-full h-screen flex flex-col bg-gradient-to-br from-neutral-900 to-gray-900 text-white">
+      {/* Main Content */}
+      <main className="flex-1 flex flex-col items-center justify-center overflow-hidden relative">
+        <input type="file" accept="image/*" hidden id="inputImg" onChange={handleImage} />
+
+        {!startRes ? (
+          <div className="w-full max-w-3xl flex flex-col items-center justify-center gap-8 px-6 py-10 animate-fadeIn">
+            <div className="text-center">
+              <h2 className="text-4xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-500">
+                {greeting}!
+              </h2>
+              <p className="text-2xl text-gray-300 font-light">How can I assist you today?</p>
             </div>
-            <div
-              className="flex items-center justify-center gap-2 px-5 py-2 border-2 border-white rounded-full cursor-pointer hover:bg-white/10"
-              onClick={() => setFeature("genimg")}
-            >
-              <RiImageAiLine className="w-6 h-6 text-cyan-400" />
-              <span>Generate Image</span>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-2xl">
+              <button
+                onClick={() => document.getElementById("inputImg").click()}
+                className="flex flex-col items-center justify-center gap-4 p-6 rounded-xl bg-gradient-to-br from-green-900/40 to-green-700/20 border border-green-500/30 hover:border-green-500/60 transition-all duration-300 group"
+              >
+                <div className="w-14 h-14 rounded-full bg-green-500/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <RiImageAddLine className="w-7 h-7 text-green-400" />
+                </div>
+                <span className="text-lg font-medium text-gray-200">Upload Image</span>
+              </button>
+
+              <button
+                onClick={() => setFeature("genimg")}
+                className="flex flex-col items-center justify-center gap-4 p-6 rounded-xl bg-gradient-to-br from-cyan-900/40 to-cyan-700/20 border border-cyan-500/30 hover:border-cyan-500/60 transition-all duration-300 group"
+              >
+                <div className="w-14 h-14 rounded-full bg-cyan-500/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <RiImageAiLine className="w-7 h-7 text-cyan-400" />
+                </div>
+                <span className="text-lg font-medium text-gray-200">Generate Image</span>
+              </button>
+
+              <button
+                onClick={() => setFeature("chat")}
+                className="flex flex-col items-center justify-center gap-4 p-6 rounded-xl bg-gradient-to-br from-purple-900/40 to-purple-700/20 border border-purple-500/30 hover:border-purple-500/60 transition-all duration-300 group"
+              >
+                <div className="w-14 h-14 rounded-full bg-purple-500/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <MdChatBubbleOutline className="w-7 h-7 text-purple-400" />
+                </div>
+                <span className="text-lg font-medium text-gray-200">Let's Chat</span>
+              </button>
             </div>
-            <div
-              className="flex items-center justify-center gap-2 px-5 py-2 border-2 border-white rounded-full cursor-pointer hover:bg-white/10"
-              onClick={() => setFeature("chat")}
-            >
-              <MdChatBubbleOutline className="w-6 h-6 text-orange-400" />
-              <span>Let's Chat</span>
+
+            <div className="mt-6 text-center">
+              <p className="text-gray-400 text-sm">
+                Try asking about campus facilities, course schedules, or assignments
+              </p>
             </div>
           </div>
-        </div>
-      ) : (
-        <Chat />
-      )}
+        ) : (
+          <div className="w-full h-full overflow-y-auto">
+            <Chat isTyping={isTyping} />
+          </div>
+        )}
 
+        {/* User uploaded image preview */}
+        {user.imgUrl && (
+          <div className="absolute left-8 bottom-24 md:left-1/4 md:bottom-28">
+            <div className="relative group">
+              <img
+                src={user.imgUrl || "/placeholder.svg"}
+                alt="Uploaded"
+                className="h-24 w-auto rounded-lg shadow-lg border-2 border-white/20"
+              />
+              <button
+                className="absolute -top-2 -right-2 bg-red-500 rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                onClick={() => {
+                  user.data = null
+                  user.mime_type = null
+                  user.imgUrl = null
+                }}
+              >
+                <RiCloseLine className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Feature popup */}
+        {popUp && (
+          <div className="absolute left-8 bottom-24 md:left-1/4 md:bottom-28 bg-gray-800/95 backdrop-blur-sm border border-gray-700 rounded-lg shadow-xl z-10">
+            <div className="flex flex-col p-2 min-w-[200px]">
+              <button
+                className="flex items-center gap-3 w-full px-4 py-3 rounded-md text-left hover:bg-gray-700/70 transition-colors"
+                onClick={() => {
+                  setPopUP(false)
+                  setFeature("chat")
+                  document.getElementById("inputImg").click()
+                }}
+              >
+                <div className="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center">
+                  <RiImageAddLine className="w-4 h-4 text-green-400" />
+                </div>
+                <span>Upload Image</span>
+              </button>
+
+              <button
+                className="flex items-center gap-3 w-full px-4 py-3 rounded-md text-left hover:bg-gray-700/70 transition-colors"
+                onClick={() => {
+                  setFeature("genimg")
+                  setPopUP(false)
+                }}
+              >
+                <div className="w-8 h-8 rounded-full bg-cyan-500/20 flex items-center justify-center">
+                  <RiImageAiLine className="w-4 h-4 text-cyan-400" />
+                </div>
+                <span>Generate Image</span>
+              </button>
+            </div>
+          </div>
+        )}
+      </main>
+
+      {/* Input Form */}
       <form
-        className="w-full  bottom-6 flex items-center justify-center gap-5 px-5"
+        className="w-full px-4 py-4 bg-neutral-800/80 backdrop-blur-sm border-t border-neutral-700"
         onSubmit={(e) => {
-          e.preventDefault();
+          e.preventDefault()
           if (input) {
             if (feature === "genimg") {
-              handleGenerateImg();
+              handleGenerateImg()
             } else {
-              handleSubmit(e);
+              handleSubmit(e)
             }
           }
         }}
       >
-        <img
-          src={user.imgUrl}
-          alt=""
-          id="im"
-          className="h-24 rounded-lg shadow-lg absolute left-10 bottom-20 lg:bottom-16 lg:left-48"
-        />
+        <div className="max-w-4xl mx-auto flex items-center gap-2">
+          <button
+            type="button"
+            className={`w-12 h-12 rounded-full flex items-center justify-center transition-colors ${feature === "genimg" ? "bg-cyan-500/20 text-cyan-400" : "bg-gray-700 hover:bg-gray-600 text-white"
+              }`}
+            onClick={() => setPopUP((prev) => !prev)}
+          >
+            {feature === "genimg" ? <RiImageAiLine className="w-5 h-5" /> : <FiPlus className="w-5 h-5" />}
+          </button>
 
-        {popUp ? (
-          <div className="absolute lg:bottom-16 left-10 bottom-15 lg:left-48 bg-gray-800 border border-white/20 rounded-lg flex flex-col items-start gap-2 p-3">
-            <div
-              className="flex items-center gap-2 w-full px-3 py-2 rounded-lg cursor-pointer hover:bg-white/10"
-              onClick={() => {
-                setPopUP(false);
-                setFeature("chat");
-                document.getElementById("inputImg").click();
-              }}
-            >
-              <RiImageAddLine className="w-6 h-6 text-green-400" />
-              <span>Upload Image</span>
-            </div>
-            <div
-              className="flex items-center gap-2 w-full px-3 py-2 rounded-lg cursor-pointer hover:bg-white/10"
-              onClick={() => {
-                setFeature("genimg");
-                setPopUP(false);
-              }}
-            >
-              <RiImageAiLine className="w-6 h-6 text-cyan-400" />
-              <span>Generate Image</span>
-            </div>
+          <div className="flex-1 relative">
+            <input
+              type="text"
+              placeholder={feature === "genimg" ? "Describe the image you want to generate..." : "Ask something..."}
+              className="w-full h-12 bg-gray-700/70 border border-gray-600 focus:border-purple-500 rounded-full px-5 text-white outline-none transition-all duration-200"
+              onChange={(e) => setInput(e.target.value)}
+              value={input}
+            />
+
+            {feature === "genimg" && (
+              <div className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-cyan-500/20 text-cyan-400 px-2 py-0.5 rounded-md text-xs">
+                Image Gen
+              </div>
+            )}
           </div>
-        ) : null}
 
-        <div
-          id="add"
-          className="w-14 h-14 border-2 border-white/30 rounded-full bg-black text-white flex items-center justify-center cursor-pointer"
-          onClick={() => {
-            setPopUP((prev) => !prev);
-          }}
-        >
-          {feature === "genimg" ? (
-            <RiImageAiLine id="genImg" className="w-6 h-6 text-cyan-400" />
-          ) : (
-            <FiPlus className="w-6 h-6" />
+          {input.trim() && (
+            <button
+              type="submit"
+              className="w-12 h-12 rounded-full bg-purple-600 hover:bg-purple-700 flex items-center justify-center transition-colors"
+            >
+              <RiSendPlaneFill className="w-5 h-5" />
+            </button>
           )}
         </div>
-        <input
-          type="text"
-          placeholder="Ask Something..."
-          className="w-[calc(100%-120px)] max-w-[60%] h-14 bg-black border-2 border-white/30 rounded-full px-5 text-lg text-white outline-none"
-          onChange={(e) => setInput(e.target.value)}
-          value={input}
-        />
-        {input ? (
-          <button
-            id="submit"
-            className="w-14 h-14 border-2 border-white/30 rounded-full bg-black text-white flex items-center justify-center"
-          >
-            <FaArrowUpLong className="w-6 h-6" />
-          </button>
-        ) : null}
       </form>
     </div>
   );
