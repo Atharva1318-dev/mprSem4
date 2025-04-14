@@ -280,9 +280,9 @@ export default function PdfForm({ username }) {
                 <Button
                     fullWidth
                     variant="contained"
-                    color="primary"
                     disabled={isUploading || uploadStatus === "success"}
                     onClick={handleSubmit}
+                    style={{ backgroundColor: "#FB923C" }}
                 >
                     {isUploading ? "Uploading..." : "Upload PDF"}
                 </Button>

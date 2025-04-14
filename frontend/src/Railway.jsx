@@ -188,9 +188,9 @@ function Railway() {
       {/* Generate PDF Button */}
       <button
         onClick={generatePDF}
-        className="mt-6 bg-blue-500 text-white py-2 px-6 rounded-lg shadow-md hover:bg-blue-600"
+        className="mt-6 bg-orange-400 text-white py-2 px-6 rounded-lg shadow-md hover:bg-orange-500"
       >
-        Generate concession 
+        Generate concession
       </button>
     </div>
   );

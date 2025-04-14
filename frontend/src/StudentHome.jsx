@@ -132,7 +132,7 @@ export default function StudentHome({ username, onLogout }) {
 
     return (
         <div className="flex flex-col min-h-screen w-full bg-white">
-            <div className="container-fluid w-full mx-auto md:px-6">
+            <div className="container-fluid w-full mx-auto px-2 md:px-6">
                 <main className="w-full px-1">
                     <section className="relative overflow-visible">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
@@ -230,7 +230,7 @@ export default function StudentHome({ username, onLogout }) {
                                 {/* Black Box with Stats */}
                                 <div className="absolute bottom-0 left-0 bg-black text-white p-6 rounded-tr-3xl z-20 digital5">
                                     <div className="bg-white text-black rounded-full w-16 h-16 flex items-center justify-center mb-3">
-                                        <span className="font-bold">5+</span>
+                                        <span className="font-bold">3+</span>
                                     </div>
                                     <p className="font-medium">Your Digital Tools</p>
                                 </div>
