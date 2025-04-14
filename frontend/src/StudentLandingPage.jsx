@@ -41,7 +41,7 @@ export default function StudentLandingPage({ username, onLogout }) {
 
                 {/* Desktop Navigation */}
                 <nav className="hidden md:flex items-center space-x-8 bg-white">
-                    <Link to="railway" className="relative group text-gray-700 hover:text-black gsapNav">
+                    <Link to="railway" className="relative flex gap-2 group text-gray-700 hover:text-black gsapNav">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                             stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
                             className="inline lucide lucide-train-front">
@@ -53,9 +53,9 @@ export default function StudentLandingPage({ username, onLogout }) {
                             <path d="m16 19 2 3" />
                         </svg>
                         Rail Concession
-                        <span className="absolute bottom-0 left-0 w-full h-0.5 bg-black transform scale-x-0 transition-transform duration-200 ease-out group-hover:scale-x-100" />
+                        <span className="absolute  -bottom-1 left-0 w-full h-0.5 bg-black transform scale-x-0 transition-transform duration-200 ease-out group-hover:scale-x-100" />
                     </Link>
-                    <Link to="getPdfs" className="relative group text-gray-700 hover:text-black gsapNav">
+                    <Link to="getPdfs" className="relative flex gap-2 group text-gray-700 hover:text-black gsapNav">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                             stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
                             className="inline lucide lucide-file-text">
@@ -66,9 +66,9 @@ export default function StudentLandingPage({ username, onLogout }) {
                             <path d="M16 17H8" />
                         </svg>
                         Notes
-                        <span className="absolute bottom-0 left-0 w-full h-0.5 bg-black transform scale-x-0 transition-transform duration-200 ease-out group-hover:scale-x-100" />
+                        <span className="absolute  -bottom-1 left-0 w-full h-0.5 bg-black transform scale-x-0 transition-transform duration-200 ease-out group-hover:scale-x-100" />
                     </Link>
-                    <Link to="calendar" className="relative group text-gray-700 hover:text-black gsapNav">
+                    <Link to="calendar" className="relative flex gap-2 group text-gray-700 hover:text-black gsapNav">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                             stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
                             className="inline lucide lucide-calendar">
@@ -78,9 +78,9 @@ export default function StudentLandingPage({ username, onLogout }) {
                             <path d="M3 10h18" />
                         </svg>
                         Calendar
-                        <span className="absolute bottom-0 left-0 w-full h-0.5 bg-black transform scale-x-0 transition-transform duration-200 ease-out group-hover:scale-x-100" />
+                        <span className="absolute  -bottom-1 left-0 w-full h-0.5 bg-black transform scale-x-0 transition-transform duration-200 ease-out group-hover:scale-x-100" />
                     </Link>
-                    <Link to="codeEditor" className="relative group text-gray-700 hover:text-black gsapNav">
+                    <Link to="codeEditor" className="relative flex gap-2 group text-gray-700 hover:text-black gsapNav">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                             stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
                             className="inline lucide lucide-code">
@@ -88,9 +88,9 @@ export default function StudentLandingPage({ username, onLogout }) {
                             <polyline points="8 6 2 12 8 18" />
                         </svg>
                         Code Editor
-                        <span className="absolute bottom-0 left-0 w-full h-0.5 bg-black transform scale-x-0 transition-transform duration-200 ease-out group-hover:scale-x-100" />
+                        <span className="absolute  -bottom-1 left-0 w-full h-0.5 bg-black transform scale-x-0 transition-transform duration-200 ease-out group-hover:scale-x-100" />
                     </Link>
-                    <Link to="canteen" className="relative group text-gray-700 hover:text-black gsapNav">
+                    <Link to="canteen" className="relative flex gap-2 group text-gray-700 hover:text-black gsapNav">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                             stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
                             className="inline lucide lucide-utensils-icon lucide-utensils">
@@ -99,14 +99,15 @@ export default function StudentLandingPage({ username, onLogout }) {
                             <path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7" />
                         </svg>
                         Canteen
-                        <span className="absolute bottom-0 left-0 w-full h-0.5 bg-black transform scale-x-0 transition-transform duration-200 ease-out group-hover:scale-x-100" />
+                        <span className="absolute  -bottom-1 left-0 w-full h-0.5 bg-black transform scale-x-0 transition-transform duration-200 ease-out group-hover:scale-x-100" />
                     </Link>
                     <Link
                         to="chatbot"
-                        className="relative group text-gray-700 hover:text-black gsapNav"
+                        className="relative flex gap-2 group text-gray-700 hover:text-black gsapNav"
                     >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bot-icon lucide-bot"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
                         Chatbot
-                        <span className="absolute bottom-0 left-0 w-full h-0.5 bg-black transform scale-x-0 transition-transform duration-200 ease-out group-hover:scale-x-100" />
+                        <span className="absolute  -bottom-1 left-0 w-full h-0.5 bg-black transform scale-x-0 transition-transform duration-200 ease-out group-hover:scale-x-100" />
                     </Link>
                 </nav>
 

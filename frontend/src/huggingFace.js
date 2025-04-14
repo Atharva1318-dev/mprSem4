@@ -2,16 +2,18 @@ import { prevUser } from "./UserContextChat";
 
 export async function query() {
 	const response = await fetch(
-		"https://api-inference.huggingface.co/models/ZB-Tech/Text-to-Image",
+		"https://router.huggingface.co/hf-inference/models/stabilityai/stable-diffusion-xl-base-1.0",
 		{
 			headers: {
-				Authorization: "Bearer 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",
+				Authorization: "Bearer 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",
 				"Content-Type": "application/json",
 			},
 			method: "POST",
 			body: JSON.stringify({"inputs":prevUser.prompt}),
 		}
 	);
+	
 	const result = await response.blob();
+	
 	return result;
 }

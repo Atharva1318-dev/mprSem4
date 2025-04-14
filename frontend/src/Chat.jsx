@@ -43,7 +43,7 @@ function Chat() {
               {!genImgUrl ? (
                 <span className="text-2xl">Generating Image...</span>
               ) : (
-                <img src={genImgUrl} alt="Generated" className="w-[400px] h-34 rounded-lg mb-4" />
+                <img src={genImgUrl} alt="Generated" className="w-[400px] h-70 rounded-lg mb-4" />
               )}
             </>
           ) : !showResult ? (
