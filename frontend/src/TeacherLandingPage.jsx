@@ -23,7 +23,7 @@ export default function TeacherLandingPage({ username, onLogout }) {
                 
                 <Link to="/dashboard"><div className="font-bold text-2xl gsapNav">EduWorld</div></Link>
                 <nav className="hidden md:flex items-center space-x-8">
-                    <Link to="pdfForm" className="relative group text-gray-700 hover:text-black gsapNav">
+                    <Link to="pdfForm" className="flex gap-2 relative group text-gray-700 hover:text-black gsapNav">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                             stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
                             className="inline lucide lucide-file-text">
@@ -34,9 +34,9 @@ export default function TeacherLandingPage({ username, onLogout }) {
                             <path d="M16 17H8" />
                         </svg>
                         Upload Notes
-                        <span className="absolute bottom-0 left-0 w-full h-0.5 bg-black transform scale-x-0 transition-transform duration-200 ease-out group-hover:scale-x-100" />
+                        <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-black transform scale-x-0 transition-transform duration-200 ease-out group-hover:scale-x-100" />
                     </Link>
-                    <Link to="calendar" className="relative group text-gray-700 hover:text-black gsapNav">
+                    <Link to="calendar" className="relative flex gap-2 group text-gray-700 hover:text-black gsapNav">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                             stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
                             className="inline lucide lucide-calendar">
@@ -46,12 +46,12 @@ export default function TeacherLandingPage({ username, onLogout }) {
                             <path d="M3 10h18" />
                         </svg>
                         Calendar
-                        <span className="absolute bottom-0 left-0 w-full h-0.5 bg-black transform scale-x-0 transition-transform duration-200 ease-out group-hover:scale-x-100" />
+                        <span className="absolute  -bottom-1 left-0 w-full h-0.5 bg-black transform scale-x-0 transition-transform duration-200 ease-out group-hover:scale-x-100" />
                     </Link>
-                    <Link to="videocall" className="relative group text-gray-700 hover:text-black gsapNav">
+                    <Link to="videocall" className="flex gap-2 relative group text-gray-700 hover:text-black gsapNav">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="inline lucide lucide-video-icon lucide-video"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5" /><rect x="2" y="6" width="14" height="12" rx="2" /></svg>
                         Meet
-                        <span className="absolute bottom-0 left-0 w-full h-0.5 bg-black transform scale-x-0 transition-transform duration-200 ease-out group-hover:scale-x-100" />
+                        <span className="absolute  -bottom-1 left-0 w-full h-0.5 bg-black transform scale-x-0 transition-transform duration-200 ease-out group-hover:scale-x-100" />
                     </Link>
                     {/* <Link href="#" className="text-gray-700 hover:text-black">
                         Assignments
