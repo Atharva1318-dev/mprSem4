@@ -203,7 +203,7 @@ function HomeChat() {
 
       {/* Input Form */}
       <form
-        className="w-full px-4 py-4 bg-neutral-800/80 backdrop-blur-sm border-t border-neutral-700"
+        className="w-full px-4 py-4 bg-neutral-800/80 backdrop-blur-sm border-t border-black"
         onSubmit={(e) => {
           e.preventDefault()
           if (input) {
