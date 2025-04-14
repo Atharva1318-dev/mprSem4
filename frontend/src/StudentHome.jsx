@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { gsap } from 'gsap';
 import { useEffect, useRef, useState } from "react";
-import { BookOpen, Calendar, Code, Train, Coffee } from "lucide-react";
+import { BookOpen, Calendar, Code, Train, Coffee, Video } from "lucide-react";
 import studentImg from "../src/assets/student.png";
 import studentMobileImg from "../src/assets/studentMobile.png";
 import './StudentHome.css';
@@ -132,11 +132,11 @@ export default function StudentHome({ username, onLogout }) {
 
     return (
         <div className="flex flex-col min-h-screen w-full bg-white">
-            <div className="container-fluid w-full mx-auto">
+            <div className="container-fluid w-full mx-auto md:px-6">
                 <main className="w-full px-1">
                     <section className="relative overflow-visible">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
-                            <div className="z-10" ref={leftColRef}>
+                            <div className="z-10 order-2 md:order-1" ref={leftColRef}>
                                 <h2 className="text-gray-600 mb-2">Smart digital campus</h2>
                                 <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-2 text-orange-400">
                                     Become
@@ -156,7 +156,7 @@ export default function StudentHome({ username, onLogout }) {
                                     </div> : null}
                             </div>
                             {/* Right Side: Student Image with Background Elements */}
-                            <div className="relative z-10 mx-auto w-full md:max-w-2xl lg:max-w-3xl" ref={rightColRef}>
+                            <div className="relative z-10 mx-auto w-full order-1 md:order-2 md:max-w-2xl lg:max-w-3xl" ref={rightColRef}>
                                 {/* Circular Animated Text behind the student image */}
                                 <div className="absolute inset-0 flex items-center justify-center -z-20">
                                     <div className="w-[750px] h-[750px] animate-[spin_20s_linear_infinite]">
@@ -389,29 +389,15 @@ export default function StudentHome({ username, onLogout }) {
                                 </Link>
                             </div>
                             {/* Support Feature */}
-                            <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-2xl transition-shadow features">
+                            <div className="bg-white p-8 rounded-2xl shadow-md hover:shadow-2xl transition-shadow features">
                                 <div className="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        className="h-8 w-8 text-purple-600"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentColor"
-                                    >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth={2}
-                                            d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"
-                                        />
-                                    </svg>
+                                    <Video className="h-8 w-8 text-purple-600" />
                                 </div>
-                                <h3 className="text-xl font-bold mb-3">24/7 Support</h3>
+                                <h3 className="text-xl font-bold mb-3">Video Call Feature</h3>
                                 <p className="text-gray-600 mb-4">
-                                    If you have any questions, you can contact our support team anytime. We're here to help you
-                                    succeed.
+                                    Connect with your students effortlessly. Our integrated video call feature enables you to hold interactive virtual classes and one-on-one sessions seamlessly.
                                 </p>
-                                <Link to="#" className="text-black font-medium flex items-center">
+                                <Link href="#" className="text-black font-medium flex items-center">
                                     Learn more
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -420,19 +406,14 @@ export default function StudentHome({ username, onLogout }) {
                                         viewBox="0 0 24 24"
                                         stroke="currentColor"
                                     >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth={2}
-                                            d="M14 5l7 7m0 0l-7 7m7-7H3"
-                                        />
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                                     </svg>
                                 </Link>
                             </div>
                         </div>
                     </section>
                     {/* Experience the Workflow Section */}
-                    <section className="py-24 relative overflow-hidden">
+                    {/* <section className="py-24 relative overflow-hidden">
                         <div className="absolute -z-10 right-0 top-0 w-[600px] h-[600px] bg-orange-400 rounded-full opacity-10"></div>
                         <div className="absolute -z-10 left-0 bottom-0 w-[400px] h-[400px] bg-purple-600 rounded-full opacity-10"></div>
 
@@ -528,7 +509,7 @@ export default function StudentHome({ username, onLogout }) {
                                     height={500}
                                     className="mx-auto rounded-xl shadow-lg"
                                 />
-                                {/* Floating Productivity Element */}
+
                                 <div className="absolute -top-10 -left-10 bg-white rounded-xl shadow-lg p-4 z-20">
                                     <div className="flex items-center gap-3">
                                         <div className="bg-orange-100 p-2 rounded-full">
@@ -553,7 +534,7 @@ export default function StudentHome({ username, onLogout }) {
                                         </div>
                                     </div>
                                 </div>
-                                {/* Floating Time Saved Element */}
+
                                 <div className="absolute -bottom-10 -right-0 bg-white rounded-xl shadow-lg p-4 z-50">
                                     <div className="flex items-center gap-3">
                                         <div className="bg-purple-100 p-2 rounded-full">
@@ -580,7 +561,7 @@ export default function StudentHome({ username, onLogout }) {
                                 </div>
                             </div>
                         </div>
-                    </section>
+                    </section> */}
                     {/* Call-to-Action Section */}
                     <section className="py-24 bg-black text-white rounded-3xl" ref={ready}>
                         <div className="container mx-auto px-4 text-center">

@@ -160,7 +160,7 @@ export default function GetPdfs() {
                 <div className="bg-white rounded-lg shadow-md p-4 mb-6">
                     <div className="flex flex-col md:flex-row gap-4 items-start md:items-center">
                         <div className="flex items-center">
-                            <FiFilter className="mr-2 text-blue-500" />
+                            <FiFilter className="mr-2 text-neutral-500" />
                             <span className="text-gray-700 font-medium">Filters:</span>
                         </div>
                         <div className="flex flex-col sm:flex-row gap-4 w-full">
@@ -210,8 +210,8 @@ export default function GetPdfs() {
                             >
                                 <div className="p-5">
                                     <div className="flex items-start">
-                                        <div className="bg-blue-100 p-3 rounded-lg mr-4">
-                                            <PdfIcon sx={{ fontSize: 40, color: "primary.main" }} />
+                                        <div className="bg-neutral-100 p-3 rounded-lg mr-4">
+                                            <PdfIcon sx={{ fontSize: 40, color: "orange" }} />
                                         </div>
                                         <div>
                                             <h3 className="text-lg font-semibold text-gray-800">{note.title}</h3>
@@ -219,7 +219,7 @@ export default function GetPdfs() {
                                                 <span className="inline-block bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded">
                                                     {note.subject}
                                                 </span>
-                                                <span className="inline-block bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded">
+                                                <span className="inline-block bg-neutral-100 text-black text-xs px-2 py-1 rounded">
                                                     {note.year}
                                                 </span>
                                             </div>
@@ -235,17 +235,17 @@ export default function GetPdfs() {
                                 <div className="flex border-t border-gray-200">
                                     <button
                                         onClick={() => handleDownload(note.pdf, note.fileName)}
-                                        className="flex-1 py-3 px-4 text-blue-600 font-medium flex items-center justify-center hover:bg-blue-50 transition-colors"
+                                        className="flex-1 py-3 px-4 font-medium flex items-center justify-center hover:bg-neutral-50 transition-colors text-black"
                                     >
-                                        <FiDownload className="mr-2" />
+                                        <FiDownload className="mr-2 text-black" />
                                         DOWNLOAD
                                     </button>
                                     <div className="w-px bg-gray-200"></div>
                                     <button
                                         onClick={() => handlePreview(note.pdf)}
-                                        className="flex-1 py-3 px-4 text-blue-600 font-medium flex items-center justify-center hover:bg-blue-50 transition-colors"
+                                        className="flex-1 py-3 px-4 font-medium flex items-center justify-center hover:bg-neutral-50 transition-colors text-black"
                                     >
-                                        <FiEye className="mr-2" />
+                                        <FiEye className="mr-2 text-black" />
                                         PREVIEW
                                     </button>
                                 </div>

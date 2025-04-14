@@ -85,7 +85,7 @@ function HomeChat() {
   }
 
   return (
-    <div className="w-full h-screen flex flex-col bg-gradient-to-br from-neutral-900 to-gray-900 text-white">
+    <div className="w-full h-screen flex flex-col bg-black text-white">
       {/* Main Content */}
       <main className="flex-1 flex flex-col items-center justify-center overflow-hidden relative">
         <input type="file" accept="image/*" hidden id="inputImg" onChange={handleImage} />
@@ -102,9 +102,9 @@ function HomeChat() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-2xl">
               <button
                 onClick={() => document.getElementById("inputImg").click()}
-                className="flex flex-col items-center justify-center gap-4 p-6 rounded-xl bg-gradient-to-br from-green-900/40 to-green-700/20 border border-green-500/30 hover:border-green-500/60 transition-all duration-300 group"
+                className="flex flex-col items-center justify-center gap-4 p-6 rounded-xl bg-gradient-to-br from-neutral-900/40 to-black border transition-all duration-300 group"
               >
-                <div className="w-14 h-14 rounded-full bg-green-500/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <div className="w-14 h-14 rounded-full bg-transparent flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                   <RiImageAddLine className="w-7 h-7 text-green-400" />
                 </div>
                 <span className="text-lg font-medium text-gray-200">Upload Image</span>
@@ -112,22 +112,22 @@ function HomeChat() {
 
               <button
                 onClick={() => setFeature("genimg")}
-                className="flex flex-col items-center justify-center gap-4 p-6 rounded-xl bg-gradient-to-br from-cyan-900/40 to-cyan-700/20 border border-cyan-500/30 hover:border-cyan-500/60 transition-all duration-300 group"
+                className="flex flex-col items-center justify-center gap-4 p-6 rounded-xl bg-gradient-to-br from-neutral-900/40 to-black border transition-all duration-300 group"
               >
-                <div className="w-14 h-14 rounded-full bg-cyan-500/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <div className="w-14 h-14 rounded-full bg-transparent flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                   <RiImageAiLine className="w-7 h-7 text-cyan-400" />
                 </div>
-                <span className="text-lg font-medium text-gray-200">Generate Image</span>
+                <span className="text-lg font-medium text-white">Generate Image</span>
               </button>
 
               <button
                 onClick={() => setFeature("chat")}
-                className="flex flex-col items-center justify-center gap-4 p-6 rounded-xl bg-gradient-to-br from-purple-900/40 to-purple-700/20 border border-purple-500/30 hover:border-purple-500/60 transition-all duration-300 group"
+                className="flex flex-col items-center justify-center gap-4 p-6 rounded-xl bg-gradient-to-br from-neutral-900/40 to-black border transition-all duration-300 group"
               >
-                <div className="w-14 h-14 rounded-full bg-purple-500/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <div className="w-14 h-14 rounded-full bg-transparent flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                   <MdChatBubbleOutline className="w-7 h-7 text-purple-400" />
                 </div>
-                <span className="text-lg font-medium text-gray-200">Let's Chat</span>
+                <span className="text-lg font-medium text-white">Let's Chat</span>
               </button>
             </div>
 

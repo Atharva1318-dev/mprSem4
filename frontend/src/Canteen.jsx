@@ -446,7 +446,7 @@ const Canteen = () => {
                         <Typography variant="h6" component="h3" className="font-bold">
                           {item.name}
                         </Typography>
-                        <Typography variant="h6" className="font-bold text-indigo-600">
+                        <Typography variant="h6" className="font-bold text-neutral-800">
                           ₹{item.price}
                         </Typography>
                       </div>

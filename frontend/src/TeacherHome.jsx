@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
-import { BookOpen, Calendar, FileText, Users, Award, BarChart } from "lucide-react"
+import { BookOpen, Calendar, FileText, Video, Users, Award, BarChart } from "lucide-react"
 import { useRef } from "react";
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
+import './TeacherHome.css';
+
 
 export default function TeacherHome({ username, onLogout }) {
 
@@ -86,13 +88,11 @@ export default function TeacherHome({ username, onLogout }) {
     console.log(username);
     return (
         <div className="flex flex-col min-h-screen bg-white">
-            <div className="container mx-auto px-4 py-8 max-w-7xl">
-
-
+            <div className="container mx-auto px-4 max-w-7xl">
                 <main>
-                    <section className="relative overflow-hidden">
-                        <div className="grid md:grid-cols-2 gap-8 items-center">
-                            <div className="z-10" ref={leftColRef}>
+                    <section className="relative">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+                            <div className="z-10 order-2 md:order-1" ref={leftColRef}>
                                 <p className="text-gray-600 mb-2">Teacher portal</p>
                                 <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8  text-orange-400">
                                     Empower
@@ -112,9 +112,9 @@ export default function TeacherHome({ username, onLogout }) {
                                     </div> : null}
                             </div>
 
-                            <div className="relative" ref={rightColRef}>
+                            <div className="relative order-1 md:order-2" ref={rightColRef}>
                                 {/* Circular text */}
-                                <div className="absolute w-full h-full flex items-center justify-center">
+                                <div className="absolute w-full h-full flex items-center justify-center circularText">
                                     <div className="w-[450px] h-[450px] animate-[spin_20s_linear_infinite]">
                                         <svg viewBox="0 0 100 100" className="w-full h-full">
                                             <path id="textPath" d="M 20,50 a 30,30 0 1,1 60,0 a 30,30 0 1,1 -60,0" fill="none" />
@@ -130,17 +130,20 @@ export default function TeacherHome({ username, onLogout }) {
 
 
                                 <div className="relative z-10 ml-auto max-w-md">
-                                    <div className="absolute -z-10 right-0 bottom-0 w-[400px] h-[400px] bg-orange-400 rounded-full"></div>
+                                    <div className="absolute -z-10 right-0 bottom-0 w-[400px] h-[400px] bg-orange-400 rounded-full orangeCircle"></div>
                                     <img
-                                        src="/placeholder.svg?height=600&width=500"
-                                        alt="Teacher image using digital tools"
-                                        width={500}
-                                        height={600}
-                                        className="relative z-10 mx-auto"
+                                        src="../src/assets/teacherHero.png"
+                                        alt="Teacher image"
+                                        className="relative z-20 object-cover w-full h-[750px] hidden md:block"
+                                    />
+                                    <img
+                                        src="../src/assets/teacherHero.png"
+                                        alt="Teacher mobile image"
+                                        className="relative z-20 object-cover w-full h-[700px] block md:hidden"
                                     />
 
 
-                                    <div className="absolute top-20 right-0 bg-white rounded-xl shadow-lg p-4 z-20">
+                                    <div className="absolute top-20 right-0 bg-white rounded-xl shadow-lg p-4 z-20 studentEnag">
                                         <div className="text-sm text-gray-500">Student Engagement</div>
                                         <div className="flex items-end h-16 gap-1 mt-2">
                                             <div className="w-4 bg-orange-400 h-10 rounded-sm"></div>
@@ -166,7 +169,7 @@ export default function TeacherHome({ username, onLogout }) {
                                 </div>
 
 
-                                <div className="absolute bottom-0 left-0 bg-black text-white p-6 rounded-tr-3xl z-20">
+                                <div className="absolute bottom-0 left-0 bg-black text-white p-6 rounded-tr-3xl z-20 teachingTools">
                                     <div className="bg-white text-black rounded-full w-16 h-16 flex items-center justify-center mb-3">
                                         <span className="font-bold">2+</span>
                                     </div>
@@ -239,12 +242,11 @@ export default function TeacherHome({ username, onLogout }) {
 
                             <div className="bg-white p-8 rounded-xl shadow-sm border hover:shadow-md transition-shadow features">
                                 <div className="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
-                                    <BookOpen className="h-8 w-8 text-purple-600" />
+                                    <Video className="h-8 w-8 text-purple-600" />
                                 </div>
-                                <h3 className="text-xl font-bold mb-3">Assignment Management</h3>
+                                <h3 className="text-xl font-bold mb-3">Video Call Feature</h3>
                                 <p className="text-gray-600 mb-4">
-                                    Create, distribute, and grade assignments digitally. Provide timely feedback to enhance learning
-                                    outcomes.
+                                    Connect with your students effortlessly. Our integrated video call feature enables you to hold interactive virtual classes and one-on-one sessions seamlessly.
                                 </p>
                                 <Link href="#" className="text-black font-medium flex items-center">
                                     Learn more
