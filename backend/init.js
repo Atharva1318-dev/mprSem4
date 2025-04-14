@@ -85,37 +85,43 @@ const students = [
         username: "Atharva",
         email: "atharva@example.com",
         password: "password123",
-        role: "student"
+        role: "student",
+        phoneNumber: "+917387241068"
     },
     {
         username: "Rishabh",
         email: "rishabh@example.com",
         password: "password123",
-        role: "student"
+        role: "student",
+        phoneNumber: "+918433943227"
     },
     {
         username: "Aarjav",
         email: "aarjav@example.com",
         password: "password123",
-        role: "student"
+        role: "student",
+        phoneNumber: "+918591768921"
     },
     {
         username: "Saish",
         email: "saish@example.com",
         password: "password123",
-        role: "student"
+        role: "student",
+        phoneNumber: "+917021831690"
     },
     {
         username: "Aaditya",
         email: "aaditya@example.com",
         password: "password123",
-        role: "student"
+        role: "student",
+        phoneNumber: "+917021127964"
     },
     {
         username: "Sarthak",
         email: "sarthak@example.com",
         password: "password123",
-        role: "student"
+        role: "student",
+        phoneNumber: "+918446634207"
     }
 ];
 

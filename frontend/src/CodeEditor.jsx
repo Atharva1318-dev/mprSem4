@@ -57,7 +57,7 @@ const CodeEditor = () => {
     };
 
     return (
-        <main className="min-h-screen w-full flex flex-col md:flex-row bg-zinc-900 text-white p-4 md:p-6 gap-4">
+        <main className="min-h-screen w-full flex flex-col md:flex-row bg-white text-white p-4 md:p-6 gap-4">
             <div className="w-full md:w-1/2 bg-zinc-800 rounded-xl shadow-lg overflow-hidden border border-zinc-700 flex flex-col">
                 <div className="flex items-center justify-between bg-zinc-700 px-4 py-3">
                     <div className="flex items-center gap-2">
@@ -102,7 +102,7 @@ const CodeEditor = () => {
                         />
                     </div>
                     <button
-                        className={`mt-4 w-full flex items-center justify-center gap-2 py-2.5 px-6 rounded-md text-white font-medium transition-all ${isLoading ? "bg-blue-600 opacity-80 cursor-wait" : "bg-blue-500 hover:bg-blue-600 active:bg-blue-700"
+                        className={`mt-4 w-full flex items-center justify-center gap-2 py-2.5 px-6 rounded-md text-white font-medium transition-all ${isLoading ? "bg-orange-400 opacity-80 cursor-wait" : "bg-orange-500 hover:bg-orange-600 active:bg-blue-700"
                             }`}
                         onClick={reviewCode}
                         disabled={isLoading}

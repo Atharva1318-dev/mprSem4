@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { BookOpen, Calendar, Code, Train, Coffee } from "lucide-react";
 import studentImg from "../src/assets/student.png";
 import studentMobileImg from "../src/assets/studentMobile.png";
+import './StudentHome.css';
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
@@ -13,6 +14,14 @@ export default function StudentHome({ username, onLogout }) {
 
     const leftColRef = useRef(null);
     const rightColRef = useRef(null);
+
+    const ready = useRef(null);
+
+    const prodLeft = useRef(null);
+    const prodRight = useRef(null);
+
+    const trust = useRef(null);
+
     //ye mulitple cheezo ko select karne mai kaam nahi aega, ek specific ko point karnekeliye nahi isliye class selector use karo
     //const features = useRef(null);
 
@@ -40,37 +49,101 @@ export default function StudentHome({ username, onLogout }) {
             scrollTrigger: {
                 scroller: "body",
                 trigger: ".featuresSection",
-                start: "top 47%",
+                start: "top 45%",
                 end: "top 0%",
-                markers: true,
+                //markers: true,
                 scrub: true,
             },
-            y: 30,
+            y: 32,
             opacity: 0,
-            duration: 1.5,
+            duration: 3.5,
             ease: 'power.in',
-            stagger: 0.5,
+            stagger: 0.7,
             toggleActions: "play reverse play reverse"
         });
+
+        tl.from(prodLeft.current, {
+            scrollTrigger: {
+                scroller: "body",
+                trigger: prodLeft.current,
+                start: "top 48%",
+                end: "top 30%",
+                //markers: true,
+                scrub: true,
+            },
+            x: -100,
+            opacity: 0,
+            duration: 1,
+            ease: 'power.in',
+            toggleActions: "play reverse play reverse"
+        });
+
+        tl.from(prodRight.current, {
+            scrollTrigger: {
+                scroller: "body",
+                trigger: prodRight.current,
+                start: "top 48%",
+                end: "top 30%",
+                //markers: true,
+                scrub: true,
+            },
+            x: 100,
+            opacity: 0,
+            delay: 0.2,
+            duration: 1,
+            ease: 'power.in',
+            toggleActions: "play reverse play reverse"
+        });
+
+        tl.from(ready.current, {
+            scrollTrigger: {
+                scroller: "body",
+                trigger: ready.current,
+                start: "top 45%",
+                end: "top 0%",
+                //markers: true,
+                scrub: true,
+            },
+            y: 32,
+            opacity: 0,
+            duration: 3.5,
+            ease: 'power.in',
+            stagger: 0.7,
+            toggleActions: "play reverse play reverse"
+        })
+
+        tl.from(trust.current, {
+            scrollTrigger: {
+                scroller: "body",
+                trigger: trust.current,
+                start: "top 44%",
+                end: "top 0%",
+                scrub: true,
+                ease: 'power.in',
+            },
+            y: 32,
+            opacity: 0,
+            duration: 1,
+            ease: 'power.in',
+            toggleActions: "play reverse play reverse"
+        })
 
     }, []);
 
     return (
-        <div className="flex flex-col min-h-screen w-screen bg-white">
+        <div className="flex flex-col min-h-screen w-full bg-white">
             <div className="container-fluid px-5 w-full mx-auto">
                 <main className="w-full px-2">
-                    {/* Hero Section */}
                     <section className="relative overflow-visible">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
-
                             <div className="z-10" ref={leftColRef}>
-                                <p className="text-gray-600 mb-2">Smart digital campus</p>
-                                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8">
+                                <h2 className="text-gray-600 mb-2">Smart digital campus</h2>
+                                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-2 text-orange-400">
                                     Become
                                     <br />
                                     a better student
                                     <br />
-                                    with digital tools.
+                                    <span className="text-black">with digital tools.</span>
                                 </h1>
                                 {!username ?
                                     <div className="flex flex-wrap gap-4">
@@ -117,7 +190,7 @@ export default function StudentHome({ username, onLogout }) {
                                     className="relative z-20 object-cover w-full h-[700px] block md:hidden"
                                 />
                                 {/* Floating Student Chart */}
-                                <div className="absolute top-20 right-0 bg-white rounded-xl shadow-lg p-4 z-20">
+                                <div className="hidden md:inline absolute top-20 right-0 bg-white rounded-xl shadow-lg p-4 z-20">
                                     <div className="text-sm text-gray-500">Student Chart</div>
                                     <div className="flex items-end h-16 gap-1 mt-2">
                                         <div className="w-4 h-8 bg-orange-400 rounded-sm"></div>
@@ -364,7 +437,7 @@ export default function StudentHome({ username, onLogout }) {
                         <div className="absolute -z-10 left-0 bottom-0 w-[400px] h-[400px] bg-purple-600 rounded-full opacity-10"></div>
 
                         <div className="grid md:grid-cols-2 gap-16 items-center">
-                            <div>
+                            <div ref={prodLeft}>
                                 <h2 className="text-4xl font-bold mb-6">
                                     Experience the workflow smart students love
                                 </h2>
@@ -447,7 +520,7 @@ export default function StudentHome({ username, onLogout }) {
                                     </div>
                                 </div>
                             </div>
-                            <div className="relative">
+                            <div className="relative" ref={prodRight}>
                                 <img
                                     src="/placeholder.svg?height=500&width=500"
                                     alt="Campus app features showcase"
@@ -509,7 +582,7 @@ export default function StudentHome({ username, onLogout }) {
                         </div>
                     </section>
                     {/* Call-to-Action Section */}
-                    <section className="py-24 bg-black text-white rounded-3xl">
+                    <section className="py-24 bg-black text-white rounded-3xl" ref={ready}>
                         <div className="container mx-auto px-4 text-center">
                             <h2 className="text-4xl font-bold mb-6">
                                 Ready to transform your campus experience?
@@ -523,7 +596,7 @@ export default function StudentHome({ username, onLogout }) {
                         </div>
                     </section>
                     {/* Trusted by Leading Institutions Section */}
-                    <section className="py-24">
+                    <section className="py-24" ref={trust}>
                         <div className="text-center mb-16">
                             <h2 className="text-3xl font-bold mb-4">Trusted by Leading Institutions</h2>
                             <p className="text-gray-600 max-w-2xl mx-auto">
@@ -532,43 +605,35 @@ export default function StudentHome({ username, onLogout }) {
                         </div>
                         <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24">
                             <img
-                                src="/placeholder.svg?height=50&width=150"
+                                src="../src/assets/univ1.jpg?height=50&width=150"
                                 alt="University logo"
                                 width={150}
                                 height={50}
                                 className="opacity-60 hover:opacity-100 transition-opacity"
                             />
                             <img
-                                src="/placeholder.svg?height=50&width=150"
+                                src="../src/assets/univ2.jpg?height=50&width=150"
                                 alt="University logo"
                                 width={150}
                                 height={50}
                                 className="opacity-60 hover:opacity-100 transition-opacity"
                             />
                             <img
-                                src="/placeholder.svg?height=50&width=150"
+                                src="../src/assets/univ3.jpg?height=50&width=150"
                                 alt="University logo"
                                 width={150}
                                 height={50}
-                                className="opacity-60 hover:opacity-100 transition-opacity"
+                                className="opacity-75 hover:opacity-100 transition-opacity"
                             />
                             <img
-                                src="/placeholder.svg?height=50&width=150"
+                                src="../src/assets/univ4.jpg?height=50&width=150"
                                 alt="University logo"
                                 width={150}
                                 height={50}
-                                className="opacity-60 hover:opacity-100 transition-opacity"
+                                className="opacity-75 hover:opacity-100 transition-opacity"
                             />
                         </div>
                     </section>
-                    <div className="fixed bottom-5 right-5 z-[1050] fab_button">
-                        <Link
-                            to="chatbot"
-                            className="bg-neutral-900 hover:bg-red-700 text-white text-lg px-4 py-4 rounded-full"
-                        >
-                            AI
-                        </Link>
-                    </div>
                 </main>
             </div >
         </div >

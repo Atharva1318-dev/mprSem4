@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 
 module.exports.Signup = async (req, res) => {
     try {
-        const { email, password, username } = req.body;
+        const { email, password, username, phoneNumber } = req.body;
         // Force role to 'student' regardless of any input
         const role = "student";
 
@@ -14,7 +14,7 @@ module.exports.Signup = async (req, res) => {
         }
 
         // Create user with role forced as 'student'
-        const user = await User.create({ email, password, username, role });
+        const user = await User.create({ email, password, username, role, phoneNumber });
 
         // Create token with payload that includes user id and role
         const token = createSecretToken(user._id);

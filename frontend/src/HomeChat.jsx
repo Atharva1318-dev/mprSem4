@@ -1,4 +1,3 @@
-
 import React, { useContext, useState, useEffect } from "react";
 import { RiImageAiLine, RiImageAddLine, RiSendPlaneFill, RiCloseLine } from "react-icons/ri";
 import { MdChatBubbleOutline } from "react-icons/md";
@@ -52,6 +51,7 @@ function HomeChat() {
     user.imgUrl = null;
     setInput("");
     let result = await generateResponse();
+    console.log(result);
     setShowResult(result);
     setFeature("chat");
   }

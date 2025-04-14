@@ -36,7 +36,7 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff"
 const theme = createTheme({
     palette: {
         primary: {
-            main: "#7e57c2", // Purple
+            main: "#000000", // Purple
             light: "#b085f5",
             dark: "#4d2c91",
             contrastText: "#ffffff",
@@ -53,7 +53,7 @@ const theme = createTheme({
         },
     },
     typography: {
-        fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+        //fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
         h3: {
             fontWeight: 700,
         },
@@ -307,21 +307,17 @@ const UserAuth = () => {
 
                                     {isLogin && (
                                         <Box sx={{ display: "flex", justifyContent: "flex-end", mb: 3 }}>
-                                            <Typography variant="body2" color="primary" sx={{ cursor: "pointer" }} component="a" href="#">
-                                                Forgot your password?
-                                            </Typography>
                                         </Box>
                                     )}
 
                                     <Button
                                         variant="contained"
-                                        color="primary"
                                         fullWidth
                                         size="large"
                                         type="submit"
                                         startIcon={isLogin ? <LoginIcon /> : <PersonAddIcon />}
                                         endIcon={<ArrowForwardIcon />}
-                                        sx={{ mt: 2 }}
+                                        sx={{ mt: 2, backgroundColor: "#FB923C" }}
                                     >
                                         {isLogin ? "Sign in" : "Sign up"}
                                     </Button>
@@ -335,7 +331,7 @@ const UserAuth = () => {
                                     </Divider>
 
                                     <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
-                                        <Button variant="text" color="primary" onClick={() => setIsLogin(!isLogin)}>
+                                        <Button variant="text" onClick={() => setIsLogin(!isLogin)}>
                                             {isLogin ? "Sign up" : "Sign in"}
                                         </Button>
                                     </Box>

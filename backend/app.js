@@ -5,13 +5,17 @@ const PORT = process.env.PORT || 8080;
 const cors = require('cors');
 const cloudinary = require('cloudinary').v2;
 const { Pdf } = require("./Models/pdfModel");
+const { Order } = require('./Models/OrderModel');
 const authRoute = require("./Routes/AuthRoute");
 const aiRoutes = require("./Routes/CodeEditorRoute");
 const cookieParser = require("cookie-parser");
 const { Event } = require("./Models/calendarModel");
 const verifyUser = require("./Middlewares/verifyUserMiddleware");
+const twilio = require("twilio");
 
-const multer = require('multer')
+
+const multer = require('multer');
+const { userVerification } = require('./Middlewares/AuthMiddleware');
 const upload = multer({
     storage: multer.memoryStorage(),
 });
@@ -25,6 +29,7 @@ require('dotenv').config()
 
 
 const app = express();
+const client = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
 
 mongoose.connect(process.env.ATLASDB_URL)
     .then(() => console.log('DB Connected!'));
@@ -167,26 +172,63 @@ app.get("/events", verifyUser, async (req, res) => {
 });
 
 
-// rishabh's code
-// const accountSid = process.env.account_Sid;
-// const authToken = process.env.auth_Token;
+app.post("/place-order", verifyUser, async (req, res) => {
+    console.log("order recieved");
+    console.log("User", req.user);
+    try {
+        const user = req.user;
+        // Only allow students with phone numbers
+        if (user.role !== "student" || !user.phoneNumber) {
+            return res.status(403).send("Only students with phone numbers can place orders.");
+        }
 
-// const client = twilio(accountSid, authToken);
-// app.post('/send-sms',(req,res)=>{
-//     client.messages.create({
-//         body:"Your order has been placed successfully bring bill and collect your order after 5 minutes",
-//         from:"whatsapp:+14155238886",
-//         to:"whatsapp:+918433943227"
+        // Generate unique random order number (e.g., 6-digit)
+        const orderNumber = "ORD" + Math.floor(100000 + Math.random() * 900000);
 
-//     }).then((response) => {
-//         console.log('Message sent:', response.sid);
-//         res.status(200).json({ success: true, sid: response.sid });
-//     })
-//     .catch((error) => {
-//         console.error('Error sending message:', error);
-//         res.status(500).json({ success: false, error: error.message });
-//     });
-// })
+        const totalAmount = req.body.items.reduce((sum, item) => {
+            return sum + item.price * item.quantity;
+        }, 0);
+
+        const newOrder = new Order({
+            orderNumber,
+            student: user._id,
+            items: req.body.items,
+            totalAmount,
+            status: "placed"
+        });
+
+        await newOrder.save();
+
+        // Send "Order Placed" WhatsApp
+        await client.messages.create({
+            from: `whatsapp:${process.env.TWILIO_WHATSAPP_FROM}`,
+            to: `whatsapp:${user.phoneNumber}`,
+            body: `✅ Hi ${user.username}, your canteen order #${orderNumber} has been successfully placed. We’ll let you know once it's ready! 🍽️`
+        });
+
+        // Send "Order Ready" WhatsApp after 2 minutes
+        setTimeout(async () => {
+            try {
+                await client.messages.create({
+                    from: `whatsapp:${process.env.TWILIO_WHATSAPP_FROM}`,
+                    to: `whatsapp:${user.phoneNumber}`,
+                    body: `📢 Your canteen order #${orderNumber} is now ready! Please collect it from the counter. Enjoy your meal! 🥤`
+                });
+                // Optional: Update order status in DB
+                await Order.findOneAndUpdate({ orderNumber }, { status: "ready" });
+
+            } catch (err) {
+                console.error("Failed to send ready message:", err.message);
+            }
+        }, 2 * 60 * 1000); // 2 minutes
+
+        res.send("Order placed and confirmation sent via WhatsApp.");
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Error placing order.");
+    }
+});
 
 
 app.get("/", (req, res) => {

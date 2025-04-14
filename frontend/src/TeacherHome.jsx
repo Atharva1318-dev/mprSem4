@@ -1,7 +1,88 @@
 import { Link } from "react-router-dom";
 import { BookOpen, Calendar, FileText, Users, Award, BarChart } from "lucide-react"
+import { useRef } from "react";
+import { gsap } from 'gsap';
+import { useGSAP } from '@gsap/react';
 
 export default function TeacherHome({ username, onLogout }) {
+
+    const leftColRef = useRef(null);
+    const rightColRef = useRef(null);
+    const ready = useRef(null);
+    const trust = useRef(null);
+
+    const tl = gsap.timeline({
+        delay: 1,
+    });
+
+    useGSAP(() => {
+
+        tl.from(leftColRef.current, {
+            x: -100,
+            opacity: 0,
+            duration: 1,
+            ease: 'power3.out',
+        });
+
+        tl.from(rightColRef.current, {
+            x: 100,
+            opacity: 0,
+            duration: 0.9,
+            ease: 'power3.out',
+        }, '-=0.4');
+
+        tl.from(".features", {
+            scrollTrigger: {
+                scroller: "body",
+                trigger: ".featuresSection",
+                start: "top 45%",
+                end: "top 0%",
+                //markers: true,
+                scrub: true,
+            },
+            y: 32,
+            opacity: 0,
+            duration: 3.5,
+            ease: 'power.in',
+            stagger: 0.7,
+            toggleActions: "play reverse play reverse"
+        });
+
+        tl.from(ready.current, {
+            scrollTrigger: {
+                scroller: "body",
+                trigger: ready.current,
+                start: "top 45%",
+                end: "top 0%",
+                //markers: true,
+                scrub: true,
+            },
+            y: 32,
+            opacity: 0,
+            duration: 3.5,
+            ease: 'power.in',
+            stagger: 0.7,
+            toggleActions: "play reverse play reverse"
+        })
+
+        tl.from(trust.current, {
+            scrollTrigger: {
+                scroller: "body",
+                trigger: trust.current,
+                start: "top 44%",
+                end: "top 0%",
+                scrub: true,
+                ease: 'power.in',
+            },
+            y: 32,
+            opacity: 0,
+            duration: 1,
+            ease: 'power.in',
+            toggleActions: "play reverse play reverse"
+        })
+
+    }, []);
+
     console.log(username);
     return (
         <div className="flex flex-col min-h-screen bg-white">
@@ -11,7 +92,7 @@ export default function TeacherHome({ username, onLogout }) {
                 <main>
                     <section className="relative overflow-hidden">
                         <div className="grid md:grid-cols-2 gap-8 items-center">
-                            <div className="z-10">
+                            <div className="z-10" ref={leftColRef}>
                                 <p className="text-gray-600 mb-2">Teacher portal</p>
                                 <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8">
                                     Empower
@@ -30,7 +111,7 @@ export default function TeacherHome({ username, onLogout }) {
                                 </div>
                             </div>
 
-                            <div className="relative">
+                            <div className="relative" ref={rightColRef}>
                                 {/* Circular text */}
                                 <div className="absolute w-full h-full flex items-center justify-center">
                                     <div className="w-[450px] h-[450px] animate-[spin_20s_linear_infinite]">
@@ -86,7 +167,7 @@ export default function TeacherHome({ username, onLogout }) {
 
                                 <div className="absolute bottom-0 left-0 bg-black text-white p-6 rounded-tr-3xl z-20">
                                     <div className="bg-white text-black rounded-full w-16 h-16 flex items-center justify-center mb-3">
-                                        <span className="font-bold">4+</span>
+                                        <span className="font-bold">2+</span>
                                     </div>
                                     <p className="font-medium">Teaching Tools</p>
                                 </div>
@@ -97,8 +178,8 @@ export default function TeacherHome({ username, onLogout }) {
                         <div className="absolute bottom-0 left-0 right-0 h-24 bg-orange-400 -z-20"></div>
                     </section>
 
-                    <section className="py-24">
-                        <div className="text-center mb-16">
+                    <section className="py-24 featuresSection">
+                        <div className="text-center mb-16 features">
                             <h2 className="text-3xl md:text-4xl font-bold mb-4">Streamline Your Teaching Process</h2>
                             <p className="text-gray-600 max-w-2xl mx-auto">
                                 Our digital tools help you focus on what matters most - educating your students.
@@ -107,7 +188,7 @@ export default function TeacherHome({ username, onLogout }) {
 
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-                            <div className="bg-white p-8 rounded-xl shadow-sm border hover:shadow-md transition-shadow">
+                            <div className="bg-white p-8 rounded-xl shadow-sm border hover:shadow-md transition-shadow features">
                                 <div className="bg-orange-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
                                     <FileText className="h-8 w-8 text-orange-600" />
                                 </div>
@@ -131,7 +212,7 @@ export default function TeacherHome({ username, onLogout }) {
                             </div>
 
 
-                            <div className="bg-white p-8 rounded-xl shadow-sm border hover:shadow-md transition-shadow">
+                            <div className="bg-white p-8 rounded-xl shadow-sm border hover:shadow-md transition-shadow features">
                                 <div className="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
                                     <Calendar className="h-8 w-8 text-purple-600" />
                                 </div>
@@ -155,7 +236,7 @@ export default function TeacherHome({ username, onLogout }) {
 
 
 
-                            <div className="bg-white p-8 rounded-xl shadow-sm border hover:shadow-md transition-shadow">
+                            <div className="bg-white p-8 rounded-xl shadow-sm border hover:shadow-md transition-shadow features">
                                 <div className="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
                                     <BookOpen className="h-8 w-8 text-purple-600" />
                                 </div>
@@ -181,8 +262,6 @@ export default function TeacherHome({ username, onLogout }) {
 
                         </div>
                     </section>
-
-
                     {/* <section className="py-16 bg-gray-50 rounded-3xl my-16 relative overflow-hidden">
                         <div className="absolute -z-10 right-0 top-0 w-[300px] h-[300px] bg-orange-400 rounded-full opacity-10"></div>
                         <div className="absolute -z-10 left-0 bottom-0 w-[200px] h-[200px] bg-purple-600 rounded-full opacity-10"></div>
@@ -413,7 +492,7 @@ export default function TeacherHome({ username, onLogout }) {
                         </div>
                     </section> */}
 
-                    <section className="py-24 bg-black text-white rounded-3xl">
+                    <section className="py-24 bg-black text-white rounded-3xl" ref={ready}>
                         <div className="container mx-auto px-4 text-center">
                             <h2 className="text-4xl font-bold mb-6">Ready to transform your teaching experience?</h2>
                             <p className="text-gray-300 mb-10 max-w-2xl mx-auto">
@@ -426,42 +505,41 @@ export default function TeacherHome({ username, onLogout }) {
                         </div>
                     </section>
 
-                    <section className="py-24">
+                    <section className="py-24" ref={trust}>
                         <div className="text-center mb-16">
                             <h2 className="text-3xl font-bold mb-4">Trusted by Leading Institutions</h2>
                             <p className="text-gray-600 max-w-2xl mx-auto">
                                 Join the community of educational institutions that trust our platform.
                             </p>
                         </div>
-
                         <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24">
                             <img
-                                src="/placeholder.svg?height=50&width=150"
+                                src="../src/assets/univ1.jpg?height=50&width=150"
                                 alt="University logo"
                                 width={150}
                                 height={50}
                                 className="opacity-60 hover:opacity-100 transition-opacity"
                             />
                             <img
-                                src="/placeholder.svg?height=50&width=150"
+                                src="../src/assets/univ2.jpg?height=50&width=150"
                                 alt="University logo"
                                 width={150}
                                 height={50}
                                 className="opacity-60 hover:opacity-100 transition-opacity"
                             />
                             <img
-                                src="/placeholder.svg?height=50&width=150"
+                                src="../src/assets/univ3.jpg?height=50&width=150"
                                 alt="University logo"
                                 width={150}
                                 height={50}
-                                className="opacity-60 hover:opacity-100 transition-opacity"
+                                className="opacity-75 hover:opacity-100 transition-opacity"
                             />
                             <img
-                                src="/placeholder.svg?height=50&width=150"
+                                src="../src/assets/univ4.jpg?height=50&width=150"
                                 alt="University logo"
                                 width={150}
                                 height={50}
-                                className="opacity-60 hover:opacity-100 transition-opacity"
+                                className="opacity-75 hover:opacity-100 transition-opacity"
                             />
                         </div>
                     </section>
