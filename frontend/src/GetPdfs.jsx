@@ -156,7 +156,6 @@ export default function GetPdfs() {
     return (
         <div className="min-h-screen bg-zinc-50 p-6">
             <div className="max-w-7xl mx-auto">
-                <h1 className="text-2xl font-bold text-gray-800 mb-6">Notes App</h1>
                 <div className="bg-white rounded-lg shadow-md p-4 mb-6">
                     <div className="flex flex-col md:flex-row gap-4 items-start md:items-center">
                         <div className="flex items-center">

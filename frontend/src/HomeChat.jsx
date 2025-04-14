@@ -145,7 +145,7 @@ function HomeChat() {
 
         {/* User uploaded image preview */}
         {user.imgUrl && (
-          <div className="absolute left-8 bottom-24 md:left-1/4 md:bottom-28">
+          <div className="absolute left-2 bottom-24 md:left-55 md:bottom-1">
             <div className="relative group">
               <img
                 src={user.imgUrl || "/placeholder.svg"}
