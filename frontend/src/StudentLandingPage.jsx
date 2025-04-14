@@ -34,7 +34,7 @@ export default function StudentLandingPage({ username, onLogout }) {
 
     return (
         <>
-            <header className="sticky top-0 z-40 bg-white flex items-center justify-between px-3 py-5 mx-auto shadow-md my-1 rounded-3xl">
+            <header className="sticky top-0 z-40 bg-white flex items-center justify-between px-3 py-5 mx-auto shadow-md my-1 mx-1 rounded-4xl">
                 <Link to="/dashboard" className="flex items-center space-x-2">
                     <img
                         src="../src/assets/navbarLogo.jpeg"
