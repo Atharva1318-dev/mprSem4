@@ -168,7 +168,7 @@ function HomeChat() {
 
         {/* Feature popup */}
         {popUp && (
-          <div className="absolute left-8 bottom-24 md:left-1/4 md:bottom-28 bg-gray-800/95 backdrop-blur-sm border border-gray-700 rounded-lg shadow-xl z-10">
+          <div className="absolute left-5 bottom-0 md:left-48 md:bottom-0 bg-gray-800/95 backdrop-blur-sm border border-gray-700 rounded-lg shadow-xl z-10">
             <div className="flex flex-col p-2 min-w-[200px]">
               <button
                 className="flex items-center gap-3 w-full px-4 py-3 rounded-md text-left hover:bg-gray-700/70 transition-colors"
