@@ -94,21 +94,22 @@ export default function TeacherHome({ username, onLogout }) {
                         <div className="grid md:grid-cols-2 gap-8 items-center">
                             <div className="z-10" ref={leftColRef}>
                                 <p className="text-gray-600 mb-2">Teacher portal</p>
-                                <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8">
+                                <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8  text-orange-400">
                                     Empower
                                     <br />
                                     your teaching
                                     <br />
-                                    with digital tools.
+                                    <span className="text-black">with digital tools.</span>
                                 </h1>
-                                <div className="flex flex-wrap gap-4">
-                                    <button className="rounded-full px-8 py-6 bg-black text-white hover:bg-gray-800 transition-colors">
-                                        Get started
-                                    </button>
-                                    <button className="rounded-full px-8 py-6 border border-black text-black hover:bg-gray-100 transition-colors">
-                                        Learn more
-                                    </button>
-                                </div>
+                                {!username ?
+                                    <div className="flex flex-wrap gap-4">
+                                        <button className="rounded-full px-8 py-6 bg-black text-white hover:bg-gray-800 transition-colors">
+                                            Get started
+                                        </button>
+                                        <button className="rounded-full px-8 py-6 border border-black text-black hover:bg-gray-100 transition-colors">
+                                            Learn more
+                                        </button>
+                                    </div> : null}
                             </div>
 
                             <div className="relative" ref={rightColRef}>
@@ -197,7 +198,7 @@ export default function TeacherHome({ username, onLogout }) {
                                     Easily upload and organize lecture notes, study materials, and resources for your students to access
                                     anytime.
                                 </p>
-                                <Link href="#" className="text-black font-medium flex items-center">
+                                <Link to="pdfForm" className="text-black font-medium flex items-center">
                                     Learn more
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -220,7 +221,7 @@ export default function TeacherHome({ username, onLogout }) {
                                 <p className="text-gray-600 mb-4">
                                     Schedule classes, exams, and important events. Keep students informed with automatic notifications.
                                 </p>
-                                <Link href="#" className="text-black font-medium flex items-center">
+                                <Link to="calendar" className="text-black font-medium flex items-center">
                                     Learn more
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"

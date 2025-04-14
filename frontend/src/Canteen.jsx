@@ -273,7 +273,7 @@ const Canteen = () => {
         severity: "success",
       });
 
-      //generateBillPDF();
+      generateBillPDF();
       setCart([]);
     } catch (err) {
       console.error("Error placing order:", err);

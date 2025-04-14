@@ -132,8 +132,8 @@ export default function StudentHome({ username, onLogout }) {
 
     return (
         <div className="flex flex-col min-h-screen w-full bg-white">
-            <div className="container-fluid px-5 w-full mx-auto">
-                <main className="w-full px-2">
+            <div className="container-fluid w-full mx-auto">
+                <main className="w-full px-1">
                     <section className="relative overflow-visible">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
                             <div className="z-10" ref={leftColRef}>
@@ -202,7 +202,7 @@ export default function StudentHome({ username, onLogout }) {
                                     </div>
                                 </div>
                                 {/* Floating 15k+ Total Students Box */}
-                                <div className="absolute bottom-20 right-10 bg-white rounded-xl shadow-lg p-4 z-20">
+                                <div className="absolute bottom-20 right-10 bg-white rounded-xl shadow-lg p-4 z-20 Students15k">
                                     <div className="flex items-center gap-3">
                                         <div className="bg-orange-100 p-2 rounded-full">
                                             <svg
@@ -228,7 +228,7 @@ export default function StudentHome({ username, onLogout }) {
                                 </div>
 
                                 {/* Black Box with Stats */}
-                                <div className="absolute bottom-0 left-0 bg-black text-white p-6 rounded-tr-3xl z-20">
+                                <div className="absolute bottom-0 left-0 bg-black text-white p-6 rounded-tr-3xl z-20 digital5">
                                     <div className="bg-white text-black rounded-full w-16 h-16 flex items-center justify-center mb-3">
                                         <span className="font-bold">5+</span>
                                     </div>
@@ -261,7 +261,7 @@ export default function StudentHome({ username, onLogout }) {
                                     Quick access to pass applications. Submit and track your railway concession requests
                                     digitally without paperwork.
                                 </p>
-                                <Link to="#" className="text-black font-medium flex items-center">
+                                <Link to="railway" className="text-black font-medium flex items-center">
                                     Learn more
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -289,7 +289,7 @@ export default function StudentHome({ username, onLogout }) {
                                     Upload and download study materials instantly. Organize your notes by subject and access
                                     them anywhere.
                                 </p>
-                                <Link to="#" className="text-black font-medium flex items-center">
+                                <Link to="getPdfs" className="text-black font-medium flex items-center">
                                     Learn more
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -314,7 +314,7 @@ export default function StudentHome({ username, onLogout }) {
                                 </div>
                                 <h3 className="text-xl font-bold mb-3">E-Calendar</h3>
                                 <p className="text-gray-600 mb-4">Important event and test tracking.</p>
-                                <Link to="#" className="text-black font-medium flex items-center">
+                                <Link to="calendar" className="text-black font-medium flex items-center">
                                     Learn more
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -342,7 +342,7 @@ export default function StudentHome({ username, onLogout }) {
                                     AI-powered code reviews and improvement suggestions. Perfect your programming skills with
                                     intelligent feedback.
                                 </p>
-                                <Link to="#" className="text-black font-medium flex items-center">
+                                <Link to="codeEditor" className="text-black font-medium flex items-center">
                                     Learn more
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -370,7 +370,7 @@ export default function StudentHome({ username, onLogout }) {
                                     Order food in advance, skip the lines. Browse menus, pay online, and get notified when your
                                     order is ready.
                                 </p>
-                                <Link to="#" className="text-black font-medium flex items-center">
+                                <Link to="canteen" className="text-black font-medium flex items-center">
                                     Learn more
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"

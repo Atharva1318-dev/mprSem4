@@ -34,7 +34,7 @@ export default function StudentLandingPage({ username, onLogout }) {
 
     return (
         <>
-            <header className="sticky top-0 z-40 bg-white flex items-center justify-between px-4 py-5 mx-auto shadow">
+            <header className="sticky top-0 z-40 bg-white flex items-center justify-between px-4 py-5 mx-auto shadow-md my-1 rounded-3xl">
                 <Link to="/dashboard">
                     <div className="font-bold text-2xl gsapNav">EduWorld</div>
                 </Link>

@@ -19,7 +19,8 @@ export default function TeacherLandingPage({ username, onLogout }) {
 
     return (
         <>
-            <header className="flex items-center justify-between px-4 py-5 mx-auto shadow">
+            <header className="flex items-center justify-between px-4 py-5 mx-auto shadow-md my-1 rounded-3xl">
+                
                 <Link to="/dashboard"><div className="font-bold text-2xl gsapNav">EduWorld</div></Link>
                 <nav className="hidden md:flex items-center space-x-8">
                     <Link to="pdfForm" className="relative group text-gray-700 hover:text-black gsapNav">

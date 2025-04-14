@@ -198,7 +198,8 @@ const UserAuth = () => {
                             }}
                         >
                             <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                                <SchoolIcon sx={{ color: "white", fontSize: 40 }} />
+                                <img src="../src/assets/eduWorldLogo.png" alt="" style={{ height: "80%", width: "14%" }} />
+                                {/* <SchoolIcon sx={{ color: "white", fontSize: 40 }} /> */}
                                 <Typography variant="h5" color="white">
                                     EduWorld
                                 </Typography>
