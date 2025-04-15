@@ -248,7 +248,7 @@ export default function TeacherHome({ username, onLogout }) {
                                 <p className="text-gray-600 mb-4">
                                     Connect with your students effortlessly. Our integrated video call feature enables you to hold interactive virtual classes and one-on-one sessions seamlessly.
                                 </p>
-                                <Link href="#" className="text-black font-medium flex items-center">
+                                <Link to="videocall" className="text-black font-medium flex items-center">
                                     Learn more
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"

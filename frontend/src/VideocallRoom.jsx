@@ -46,7 +46,7 @@ const VideocallRoom = () => {
     <div>
       <div
         ref={meetingRef} // Use the ref here
-        className="bg-zinc-900"
+        className="bg-gray-50"
         style={{ width: "100vw", height: "100vh" }}
       />
     </div>

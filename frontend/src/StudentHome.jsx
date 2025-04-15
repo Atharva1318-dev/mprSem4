@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { gsap } from 'gsap';
 import { useEffect, useRef, useState } from "react";
-import { BookOpen, Calendar, Code, Train, Coffee, Video } from "lucide-react";
+import { BookOpen, Calendar, Code, Train, Coffee, Bot } from "lucide-react";
 import studentImg from "../src/assets/student.png";
 import studentMobileImg from "../src/assets/studentMobile.png";
 import './StudentHome.css';
@@ -391,13 +391,13 @@ export default function StudentHome({ username, onLogout }) {
                             {/* Support Feature */}
                             <div className="bg-white p-8 rounded-2xl shadow-md hover:shadow-2xl transition-shadow features">
                                 <div className="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
-                                    <Video className="h-8 w-8 text-purple-600" />
+                                    <Bot className="h-8 w-8 text-purple-600" />
                                 </div>
-                                <h3 className="text-xl font-bold mb-3">Video Call Feature</h3>
+                                <h3 className="text-xl font-bold mb-3">Chat Bot</h3>
                                 <p className="text-gray-600 mb-4">
-                                    Connect with your students effortlessly. Our integrated video call feature enables you to hold interactive virtual classes and one-on-one sessions seamlessly.
+                                Experience 24/7 assistance with our smart Chatbot, designed to solve doubts, generate images, and tackle problems effortlessly.
                                 </p>
-                                <Link href="#" className="text-black font-medium flex items-center">
+                                <Link to="chatbot" className="text-black font-medium flex items-center">
                                     Learn more
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -406,7 +406,12 @@ export default function StudentHome({ username, onLogout }) {
                                         viewBox="0 0 24 24"
                                         stroke="currentColor"
                                     >
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth={2}
+                                            d="M14 5l7 7m0 0l-7 7m7-7H3"
+                                        />
                                     </svg>
                                 </Link>
                             </div>
