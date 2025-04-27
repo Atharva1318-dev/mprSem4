@@ -71,7 +71,7 @@ export default function StudentHome({ username, onLogout }) {
             scrollTrigger: {
                 scroller: "body",
                 trigger: ".productivitySec",
-                start: "top 50%",
+                start: "top 48%",
                 end: "top 0%",
                 scrub: true,
             },
@@ -85,7 +85,7 @@ export default function StudentHome({ username, onLogout }) {
             scrollTrigger: {
                 scroller: "body",
                 trigger: ".productivitySec",
-                start: "top 50%",
+                start: "top 48%",
                 end: "top 0%",
                 scrub: true,
             },
@@ -137,7 +137,7 @@ export default function StudentHome({ username, onLogout }) {
                     <section className="relative">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
                             <div className="z-10 order-2 md:order-1" ref={leftColRef}>
-                                <h2 className="text-gray-600 mb-2">Smart digital campus</h2>
+                                <h2 className="text-gray-600 mb-2 text-lg md:text-2xl">Smart digital campus</h2>
                                 <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-2 text-orange-400">
                                     Become
                                     <br />

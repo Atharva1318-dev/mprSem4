@@ -1,15 +1,29 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import { Routes, Route, useNavigate, Outlet } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 import { BookOpen, Calendar, FileText, Users, Award, BarChart } from "lucide-react"
-import TeacherHome from './TeacherHome';
-import PdfForm from './PdfForm';
+
+
+import Drawer from '@mui/material/Drawer';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
 
 export default function TeacherLandingPage({ username, onLogout }) {
+    const [isOpen, setIsOpen] = useState(false);
     console.log(username);
+
+    const mobileNavLinks = [
+        { to: "pdfForm", label: "Upload notes" },
+        { to: "calendar", label: "Calendar" },
+        { to: "/videocall", label: "Meet" }
+    ];
 
     useGSAP(() => {
         gsap.from(".gsapNav", {
@@ -21,7 +35,7 @@ export default function TeacherLandingPage({ username, onLogout }) {
 
     return (
         <>
-            <header className="flex items-center justify-between px-4 py-5 mx-auto shadow-md my-1 mx-1 w-full rounded-4xl">
+            <header className="flex items-center justify-between px-4 py-5 mx-auto shadow-lg mt-1 mx-2 rounded-[47px]">
 
                 <Link to="/dashboard" className="flex items-center space-x-2">
                     <img
@@ -67,12 +81,47 @@ export default function TeacherLandingPage({ username, onLogout }) {
                         <span className="absolute bottom-0 left-0 w-full h-0.5 bg-black transform scale-x-0 transition-transform duration-200 ease-out group-hover:scale-x-100" />
                     </Link> */}
                 </nav>
-                {username ? <button className="rounded-full px-6 py-2 bg-white text-black border border-gray-300 hover:bg-gray-100 transition-colors gsapNav" onClick={onLogout}>
+                {/* Mobile Hamburger Icon */}
+                <div className="md:hidden">
+                    <IconButton onClick={() => setIsOpen(true)} aria-label="menu">
+                        <MenuIcon />
+                    </IconButton>
+                </div>
+                {username ? <button className="hidden md:inline rounded-full px-6 py-2 bg-white text-black border border-gray-300 hover:bg-gray-100 transition-colors gsapNav" onClick={onLogout}>
                     Logout
                 </button> : <button className="rounded-full px-6 py-2 bg-white text-black border border-gray-300 hover:bg-gray-100 transition-colors gsapNav">
                     Sign in
                 </button>}
             </header>
+
+            {/* Material UI Side Drawer for Mobile */}
+            <Drawer
+                anchor="right"
+                open={isOpen}
+                onClose={() => setIsOpen(false)}
+            >
+                <List sx={{ width: 250 }}>
+                    {mobileNavLinks.map((link, index) => (
+                        <ListItem button key={index} onClick={() => setIsOpen(false)}>
+                            <Link to={link.to} className="block w-full">
+                                <ListItemText primary={link.label} />
+                            </Link>
+                        </ListItem>
+                    ))}
+                    {/* Include Logout button in side drawer if user is logged in */}
+                    {username && (
+                        <ListItem
+                            button
+                            onClick={() => {
+                                setIsOpen(false);
+                                onLogout();
+                            }}
+                        >
+                            <ListItemText primary="Logout" />
+                        </ListItem>
+                    )}
+                </List>
+            </Drawer>
 
             <Outlet />
 

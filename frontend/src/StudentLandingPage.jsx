@@ -31,11 +31,12 @@ export default function StudentLandingPage({ username, onLogout }) {
         { to: "calendar", label: "Calendar" },
         { to: "codeEditor", label: "Code Editor" },
         { to: "canteen", label: "Canteen" },
+        { to: "chatbot", label: "Chatbot" }
     ];
 
     return (
         <>
-            <header className="sticky top-0 z-40 bg-white flex items-center justify-between px-3 py-4 mx-auto w-full shadow-lg mt-1 mx-2 rounded-[47px]">
+            <header className="sticky top-0 z-40 bg-white flex items-center justify-between px-4 py-4 mx-auto w-full shadow-lg mt-1 mx-2 rounded-[47px]">
                 <Link to="/dashboard" className="flex items-center space-x-2">
                     <img
                         src="../src/assets/navbarLogo.jpeg"
