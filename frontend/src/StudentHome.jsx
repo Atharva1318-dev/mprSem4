@@ -26,12 +26,15 @@ export default function StudentHome({ username, onLogout }) {
     //const features = useRef(null);
     const featuresSection = useRef(null);
 
-    const tl = gsap.timeline({
-        delay: 1.2,
-    });
 
     useGSAP(() => {
+
         gsap.registerPlugin(ScrollTrigger);
+
+        const tl = gsap.timeline({
+            delay: 1,
+        });
+
 
         // normal animations inside timeline
         tl.from(leftColRef.current, {
@@ -48,7 +51,7 @@ export default function StudentHome({ username, onLogout }) {
             ease: 'power3.out',
         }, '-=0.7');
 
-        
+
         gsap.from(".features", {
             scrollTrigger: {
                 scroller: "body",
@@ -67,9 +70,9 @@ export default function StudentHome({ username, onLogout }) {
         gsap.from(prodLeft.current, {
             scrollTrigger: {
                 scroller: "body",
-                trigger: prodLeft.current,
-                start: "top 45%",
-                end: "top 15%",
+                trigger: ".productivitySec",
+                start: "top 50%",
+                end: "top 0%",
                 scrub: true,
             },
             x: -100,
@@ -81,9 +84,9 @@ export default function StudentHome({ username, onLogout }) {
         gsap.from(prodRight.current, {
             scrollTrigger: {
                 scroller: "body",
-                trigger: prodRight.current,
-                start: "top 45%",
-                end: "top 15%",
+                trigger: ".productivitySec",
+                start: "top 50%",
+                end: "top 0%",
                 scrub: true,
             },
             x: 100,
@@ -97,7 +100,7 @@ export default function StudentHome({ username, onLogout }) {
             scrollTrigger: {
                 scroller: "body",
                 trigger: ready.current,
-                start: "top 45%",
+                start: "top 42%",
                 end: "top 0%",
                 scrub: true,
             },
@@ -122,14 +125,16 @@ export default function StudentHome({ username, onLogout }) {
             ease: 'power.in',
         });
 
+        ScrollTrigger.refresh();
+
     }, []);
 
 
     return (
-        <div className="container-fluid flex flex-col min-h-screen w-full bg-white overflow-x-hidden">
-            <div className="w-full mx-auto px-2 md:px-6">
+        <div className="container-fluid flex flex-col min-h-screen w-full bg-white">
+            <div className="w-full px-2 md:px-6">
                 <main className="w-full px-1">
-                    <section className="relative overflow-visible">
+                    <section className="relative">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
                             <div className="z-10 order-2 md:order-1" ref={leftColRef}>
                                 <h2 className="text-gray-600 mb-2">Smart digital campus</h2>
@@ -154,7 +159,7 @@ export default function StudentHome({ username, onLogout }) {
                             <div className="relative z-10 mx-auto w-full order-1 md:order-2 md:max-w-2xl lg:max-w-3xl" ref={rightColRef}>
                                 {/* Circular Animated Text behind the student image */}
                                 <div className="absolute inset-0 flex items-center justify-center -z-20">
-                                    <div className="w-[750px] h-[750px] animate-[spin_20s_linear_infinite]">
+                                    <div className="w-[300px] h-[300px] md:w-[650px] md:h-[650px] animate-[spin_20s_linear_infinite]">
                                         <svg viewBox="0 0 100 100" className="w-full h-full">
                                             <path
                                                 id="textPath"
@@ -182,7 +187,7 @@ export default function StudentHome({ username, onLogout }) {
                                 <img
                                     src={studentMobileImg}
                                     alt="Student image"
-                                    className="relative z-20 object-cover w-full h-[700px] block md:hidden"
+                                    className="relative z-20 object-cover w-full h-[600px] block md:hidden"
                                 />
                                 {/* Floating Student Chart */}
                                 <div className="hidden md:inline absolute top-20 right-0 bg-white rounded-xl shadow-lg p-4 z-20">
@@ -413,12 +418,12 @@ export default function StudentHome({ username, onLogout }) {
                         </div>
                     </section>
                     {/* Experience the Workflow Section */}
-                    <section className="py-24 relative overflow-hidden">
-                        <div className="absolute -z-10 right-0 top-0 w-[600px] h-[600px] bg-orange-400 rounded-full opacity-10"></div>
-                        <div className="absolute -z-10 left-0 bottom-0 w-[400px] h-[400px] bg-purple-600 rounded-full opacity-10"></div>
+                    <section className="py-15 relative px-2 overflow-hidden productivitySec">
+                        <div className="absolute -z-10 right-0 top-0 w-[250px] h-[250px] md:w-[600px] md:h-[600px] bg-orange-400 rounded-full opacity-10"></div>
+                        <div className="absolute -z-10 left-0 bottom-0  w-[200px] h-[200px] md:w-[400px] md:h-[400px] bg-purple-600 rounded-full opacity-10"></div>
 
                         <div className="grid md:grid-cols-2 gap-16 items-center">
-                            <div ref={prodLeft}>
+                            <div className="order-2 md:order-1" ref={prodLeft}>
                                 <h2 className="text-4xl font-bold mb-6">
                                     Experience the workflow smart students love
                                 </h2>
@@ -501,7 +506,7 @@ export default function StudentHome({ username, onLogout }) {
                                     </div>
                                 </div>
                             </div>
-                            <div className="relative hidden md:inline" ref={prodRight}>
+                            <div className="invisible md:visible order-1 md:order-2 relative" ref={prodRight}>
                                 <div className="border rounded-3xl shadow-lg mx-10">
                                     <DotLottieReact
                                         src="https://lottie.host/e196c9c3-2d8f-4808-9b66-28a71500c060/qVNS98ACCW.lottie"
@@ -510,7 +515,7 @@ export default function StudentHome({ username, onLogout }) {
                                     />
                                 </div>
 
-                                <div className="absolute -top-10 -left-10 bg-white rounded-xl shadow-lg p-4 z-20">
+                                <div className="invisible md:visible absolute -top-10 -left-10 bg-white rounded-xl shadow-lg p-4 z-20">
                                     <div className="flex items-center gap-3">
                                         <div className="bg-orange-100 p-2 rounded-full">
                                             <svg
@@ -528,14 +533,14 @@ export default function StudentHome({ username, onLogout }) {
                                                 />
                                             </svg>
                                         </div>
-                                        <div>
+                                        <div className="">
                                             <p className="font-bold">Productivity</p>
                                             <p className="text-sm text-gray-500">Increased by 40%</p>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div className="absolute -bottom-10 -right-0 bg-white rounded-xl shadow-lg p-4 z-50">
+                                <div className="invisible md:visible absolute -bottom-10 -right-0 bg-white rounded-xl shadow-lg p-4 z-50">
                                     <div className="flex items-center gap-3">
                                         <div className="bg-purple-100 p-2 rounded-full">
                                             <svg

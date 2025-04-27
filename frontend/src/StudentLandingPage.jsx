@@ -18,7 +18,7 @@ export default function StudentLandingPage({ username, onLogout }) {
 
     useGSAP(() => {
         gsap.from(".gsapNav", {
-            y: -70,
+            y: -90,
             duration: 0.8,
             stagger: 0.2,
         });
@@ -35,14 +35,14 @@ export default function StudentLandingPage({ username, onLogout }) {
 
     return (
         <>
-            <header className="sticky top-0 z-40 bg-white flex items-center justify-between px-3 py-4 mx-auto w-full shadow-lg mt-1 mx-1 rounded-[47px]">
+            <header className="sticky top-0 z-40 bg-white flex items-center justify-between px-3 py-4 mx-auto w-full shadow-lg mt-1 mx-2 rounded-[47px]">
                 <Link to="/dashboard" className="flex items-center space-x-2">
                     <img
                         src="../src/assets/navbarLogo.jpeg"
                         alt="Logo"
-                        className="h-10 w-14 object-cover"
+                        className="h-6 w-9 md:h-10 md:w-14 object-cover"
                     />
-                    <span className="font-bold text-2xl gsapNav">EduWorld</span>
+                    <span className="font-bold text-lg md:text-2xl gsapNav">EduWorld</span>
                 </Link>
 
                 {/* Desktop Navigation */}
@@ -111,7 +111,7 @@ export default function StudentLandingPage({ username, onLogout }) {
                         to="chatbot"
                         className="relative flex gap-2 group text-gray-700 hover:text-black gsapNav"
                     >
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bot-icon lucide-bot"><path d="M12 8V4H8" /><rect width="16" height="12" x="4" y="8" rx="2" /><path d="M2 14h2" /><path d="M20 14h2" /><path d="M15 13v2" /><path d="M9 13v2" /></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-bot-icon lucide-bot"><path d="M12 8V4H8" /><rect width="16" height="12" x="4" y="8" rx="2" /><path d="M2 14h2" /><path d="M20 14h2" /><path d="M15 13v2" /><path d="M9 13v2" /></svg>
                         Chatbot
                         <span className="absolute  -bottom-1 left-0 w-full h-0.5 bg-black transform scale-x-0 transition-transform duration-200 ease-out group-hover:scale-x-100" />
                     </Link>

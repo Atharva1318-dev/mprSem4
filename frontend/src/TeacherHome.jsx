@@ -45,13 +45,13 @@ export default function TeacherHome({ username, onLogout }) {
                 end: "top 0%",
                 //markers: true,
                 scrub: true,
+                toggleActions: "play reverse play reverse"
             },
             y: 32,
             opacity: 0,
             duration: 3.5,
             ease: 'power.in',
             stagger: 0.7,
-            toggleActions: "play reverse play reverse"
         });
 
         gsap.from(ready.current, {
@@ -62,14 +62,14 @@ export default function TeacherHome({ username, onLogout }) {
                 end: "top 0%",
                 //markers: true,
                 scrub: true,
+                toggleActions: "play reverse play reverse"
             },
             y: 32,
             opacity: 0,
             duration: 3.5,
             ease: 'power.in',
             stagger: 0.7,
-            toggleActions: "play reverse play reverse"
-        })
+        });
 
         gsap.from(trust.current, {
             scrollTrigger: {
@@ -78,13 +78,16 @@ export default function TeacherHome({ username, onLogout }) {
                 start: "top 44%",
                 end: "top 0%",
                 scrub: true,
+                toggleActions: "play reverse play reverse"
             },
             y: 32,
             opacity: 0,
             duration: 1,
             ease: 'power.in',
-            toggleActions: "play reverse play reverse"
-        })
+
+        });
+
+        ScrollTrigger.refresh();
 
     }, []);
 
@@ -130,8 +133,6 @@ export default function TeacherHome({ username, onLogout }) {
                                         </svg>
                                     </div>
                                 </div>
-
-
                                 <div className="relative z-10 ml-auto max-w-md">
                                     <div className="absolute -z-10 right-0 bottom-0 w-[400px] h-[400px] bg-orange-400 rounded-full orangeCircle"></div>
                                     <img
