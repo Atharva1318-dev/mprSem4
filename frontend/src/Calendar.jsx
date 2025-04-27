@@ -126,7 +126,7 @@ export default function ECalendar() {
                 }}
             />
 
-           
+
             <Modal open={modalOpen} onClose={() => setModalOpen(false)}>
                 <Box
                     sx={{
@@ -178,7 +178,7 @@ export default function ECalendar() {
                             value={formData.endDate}
                             onChange={handleInputChange}
                         />
-                        <Button variant="contained" color="primary" type="submit" fullWidth>
+                        <Button variant="contained" style={{ backgroundColor: "#FB923C" }} type="submit" fullWidth>
                             Add Event
                         </Button>
                     </form>

@@ -4,6 +4,8 @@ import { useRef } from "react";
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
 import './TeacherHome.css';
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 
 
 export default function TeacherHome({ username, onLogout }) {
@@ -13,11 +15,13 @@ export default function TeacherHome({ username, onLogout }) {
     const ready = useRef(null);
     const trust = useRef(null);
 
-    const tl = gsap.timeline({
-        delay: 1,
-    });
 
     useGSAP(() => {
+        const tl = gsap.timeline({
+            delay: 0.8,
+        });
+
+        gsap.registerPlugin(ScrollTrigger);
 
         tl.from(leftColRef.current, {
             x: -100,
@@ -33,7 +37,7 @@ export default function TeacherHome({ username, onLogout }) {
             ease: 'power3.out',
         }, '-=0.4');
 
-        tl.from(".features", {
+        gsap.from(".features", {
             scrollTrigger: {
                 scroller: "body",
                 trigger: ".featuresSection",
@@ -50,7 +54,7 @@ export default function TeacherHome({ username, onLogout }) {
             toggleActions: "play reverse play reverse"
         });
 
-        tl.from(ready.current, {
+        gsap.from(ready.current, {
             scrollTrigger: {
                 scroller: "body",
                 trigger: ready.current,
@@ -67,14 +71,13 @@ export default function TeacherHome({ username, onLogout }) {
             toggleActions: "play reverse play reverse"
         })
 
-        tl.from(trust.current, {
+        gsap.from(trust.current, {
             scrollTrigger: {
                 scroller: "body",
                 trigger: trust.current,
                 start: "top 44%",
                 end: "top 0%",
                 scrub: true,
-                ease: 'power.in',
             },
             y: 32,
             opacity: 0,
@@ -265,236 +268,6 @@ export default function TeacherHome({ username, onLogout }) {
 
                         </div>
                     </section>
-                    {/* <section className="py-16 bg-gray-50 rounded-3xl my-16 relative overflow-hidden">
-                        <div className="absolute -z-10 right-0 top-0 w-[300px] h-[300px] bg-orange-400 rounded-full opacity-10"></div>
-                        <div className="absolute -z-10 left-0 bottom-0 w-[200px] h-[200px] bg-purple-600 rounded-full opacity-10"></div>
-
-                        <div className="container mx-auto px-4">
-                            <div className="text-center mb-12">
-                                <h2 className="text-3xl md:text-4xl font-bold mb-4">Upload Notes in Seconds</h2>
-                                <p className="text-gray-600 max-w-2xl mx-auto">
-                                    Our intuitive interface makes it easy to upload and organize your teaching materials.
-                                </p>
-                            </div>
-
-                            <div className="bg-white rounded-xl shadow-lg p-6 max-w-4xl mx-auto">
-                                <div className="flex flex-col md:flex-row gap-8">
-                                    <div className="flex-1">
-                                        <h3 className="text-xl font-bold mb-4">Upload Your PDF Notes</h3>
-                                        <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center mb-4 hover:border-orange-400 transition-colors cursor-pointer">
-                                            <FileText className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                                            <p className="text-gray-500 mb-2">Drag and drop your PDF files here</p>
-                                            <p className="text-gray-400 text-sm">or</p>
-                                            <button className="mt-4 px-4 py-2 bg-orange-400 text-white rounded-lg hover:bg-orange-500 transition-colors">
-                                                Browse Files
-                                            </button>
-                                        </div>
-                                        <div className="space-y-4">
-                                            <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
-                                                <div className="flex items-center">
-                                                    <FileText className="h-5 w-5 text-orange-500 mr-2" />
-                                                    <span className="text-sm">Chapter_5_Notes.pdf</span>
-                                                </div>
-                                                <span className="text-xs text-gray-500">3.2 MB</span>
-                                            </div>
-                                            <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
-                                                <div className="flex items-center">
-                                                    <FileText className="h-5 w-5 text-orange-500 mr-2" />
-                                                    <span className="text-sm">Midterm_Review.pdf</span>
-                                                </div>
-                                                <span className="text-xs text-gray-500">2.8 MB</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className="flex-1">
-                                        <h3 className="text-xl font-bold mb-4">File Details</h3>
-                                        <div className="space-y-4">
-                                            <div>
-                                                <label className="block text-sm font-medium text-gray-700 mb-1">Title</label>
-                                                <input
-                                                    type="text"
-                                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400"
-                                                    placeholder="Enter document title"
-                                                />
-                                            </div>
-                                            <div>
-                                                <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
-                                                <textarea
-                                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400"
-                                                    placeholder="Enter document description"
-                                                    rows={3}
-                                                ></textarea>
-                                            </div>
-                                            <div>
-                                                <label className="block text-sm font-medium text-gray-700 mb-1">Subject</label>
-                                                <select className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400">
-                                                    <option>Select subject</option>
-                                                    <option>Mathematics</option>
-                                                    <option>Science</option>
-                                                    <option>History</option>
-                                                    <option>Literature</option>
-                                                </select>
-                                            </div>
-                                            <div>
-                                                <label className="block text-sm font-medium text-gray-700 mb-1">Visibility</label>
-                                                <div className="flex gap-4">
-                                                    <label className="flex items-center">
-                                                        <input type="radio" name="visibility" className="mr-2" />
-                                                        <span>All Students</span>
-                                                    </label>
-                                                    <label className="flex items-center">
-                                                        <input type="radio" name="visibility" className="mr-2" />
-                                                        <span>Specific Classes</span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <button className="w-full py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors">
-                                                Upload Document
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section> */}
-
-
-                    {/* <section className="py-16 my-16 relative overflow-hidden">
-                        <div className="absolute -z-10 left-0 top-0 w-[300px] h-[300px] bg-purple-600 rounded-full opacity-10"></div>
-                        <div className="absolute -z-10 right-0 bottom-0 w-[200px] h-[200px] bg-orange-400 rounded-full opacity-10"></div>
-
-                        <div className="container mx-auto px-4">
-                            <div className="text-center mb-12">
-                                <h2 className="text-3xl md:text-4xl font-bold mb-4">Manage Your Schedule Efficiently</h2>
-                                <p className="text-gray-600 max-w-2xl mx-auto">
-                                    The E-Calendar helps you organize classes, exams, and important events in one place.
-                                </p>
-                            </div>
-
-                            <div className="bg-white rounded-xl shadow-lg p-6 max-w-4xl mx-auto">
-                                <div className="flex flex-col md:flex-row gap-8">
-                                    <div className="flex-1">
-                                        <div className="mb-4 flex justify-between items-center">
-                                            <h3 className="text-xl font-bold">October 2023</h3>
-                                            <div className="flex gap-2">
-                                                <button className="p-2 rounded-full hover:bg-gray-100">
-                                                    <svg
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                        className="h-5 w-5"
-                                                        fill="none"
-                                                        viewBox="0 0 24 24"
-                                                        stroke="currentColor"
-                                                    >
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                                                    </svg>
-                                                </button>
-                                                <button className="p-2 rounded-full hover:bg-gray-100">
-                                                    <svg
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                        className="h-5 w-5"
-                                                        fill="none"
-                                                        viewBox="0 0 24 24"
-                                                        stroke="currentColor"
-                                                    >
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                                    </svg>
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                        <div className="grid grid-cols-7 gap-1 text-center mb-2">
-                                            {["S", "M", "T", "W", "T", "F", "S"].map((day, i) => (
-                                                <div key={i} className="text-sm font-medium text-gray-500 py-2">
-                                                    {day}
-                                                </div>
-                                            ))}
-                                        </div>
-
-                                        <div className="grid grid-cols-7 gap-1">
-                                            {Array.from({ length: 35 }).map((_, i) => {
-                                                const day = i - 6 // Offset to start from the correct day
-                                                return (
-                                                    <div
-                                                        key={i}
-                                                        className={`
-                              h-12 flex items-center justify-center rounded-lg text-sm
-                              ${day <= 0 || day > 31 ? "text-gray-300" : "hover:bg-gray-100 cursor-pointer"}
-                              ${day === 15 ? "bg-orange-100 text-orange-600 font-medium" : ""}
-                              ${day === 22 ? "bg-purple-100 text-purple-600 font-medium" : ""}
-                              ${day === 10 ? "border border-orange-400" : ""}
-                            `}
-                                                    >
-                                                        {day > 0 && day <= 31 ? day : ""}
-                                                    </div>
-                                                )
-                                            })}
-                                        </div>
-                                    </div>
-
-                                    <div className="flex-1">
-                                        <h3 className="text-xl font-bold mb-4">Add New Event</h3>
-                                        <div className="space-y-4">
-                                            <div>
-                                                <label className="block text-sm font-medium text-gray-700 mb-1">Event Title</label>
-                                                <input
-                                                    type="text"
-                                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400"
-                                                    placeholder="Enter event title"
-                                                />
-                                            </div>
-                                            <div className="grid grid-cols-2 gap-4">
-                                                <div>
-                                                    <label className="block text-sm font-medium text-gray-700 mb-1">Date</label>
-                                                    <input
-                                                        type="date"
-                                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400"
-                                                    />
-                                                </div>
-                                                <div>
-                                                    <label className="block text-sm font-medium text-gray-700 mb-1">Time</label>
-                                                    <input
-                                                        type="time"
-                                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400"
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <label className="block text-sm font-medium text-gray-700 mb-1">Event Type</label>
-                                                <select className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400">
-                                                    <option>Select event type</option>
-                                                    <option>Class</option>
-                                                    <option>Exam</option>
-                                                    <option>Assignment Due</option>
-                                                    <option>Meeting</option>
-                                                    <option>Other</option>
-                                                </select>
-                                            </div>
-                                            <div>
-                                                <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
-                                                <textarea
-                                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400"
-                                                    placeholder="Enter event description"
-                                                    rows={3}
-                                                ></textarea>
-                                            </div>
-                                            <div>
-                                                <label className="block text-sm font-medium text-gray-700 mb-1">Notify Students</label>
-                                                <div className="flex items-center">
-                                                    <input type="checkbox" className="mr-2" />
-                                                    <span>Send notification to students</span>
-                                                </div>
-                                            </div>
-                                            <button className="w-full py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors">
-                                                Add to Calendar
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section> */}
-
                     <section className="py-24 bg-black text-white rounded-3xl" ref={ready}>
                         <div className="container mx-auto px-4 text-center">
                             <h2 className="text-4xl font-bold mb-6">Ready to transform your teaching experience?</h2>

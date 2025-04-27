@@ -1,10 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 const VideoCallHome = () => {
   const [roomId, setRoomId] = React.useState("");
   const navigate = useNavigate();
   const handleJoin = () => {
-    navigate(`/dashboard/videocall/room/${roomId}`);
+    navigate(`/videocall/room/${roomId}`);
   };
   return (
     <div className="bg-gray-50 text-black min-h-screen flex flex-col items-center justify-center space-y-4">
@@ -18,7 +19,6 @@ const VideoCallHome = () => {
         Join Now
       </button>
     </div>
-
   );
 };
 

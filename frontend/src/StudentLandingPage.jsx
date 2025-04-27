@@ -3,6 +3,7 @@ import { Routes, Route, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
+import React from 'react';
 
 // Material UI Imports
 import Drawer from '@mui/material/Drawer';
@@ -34,7 +35,7 @@ export default function StudentLandingPage({ username, onLogout }) {
 
     return (
         <>
-            <header className="sticky top-0 z-40 bg-white flex items-center justify-between px-3 py-5 mx-auto shadow-md my-1 mx-1 rounded-4xl">
+            <header className="sticky top-0 z-40 bg-white flex items-center justify-between px-3 py-4 mx-auto w-full shadow-lg mt-1 mx-1 rounded-[47px]">
                 <Link to="/dashboard" className="flex items-center space-x-2">
                     <img
                         src="../src/assets/navbarLogo.jpeg"

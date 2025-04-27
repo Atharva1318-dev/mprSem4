@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { Routes, Route, useNavigate, Outlet } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 import { BookOpen, Calendar, FileText, Users, Award, BarChart } from "lucide-react"
 import TeacherHome from './TeacherHome';
 import PdfForm from './PdfForm';
@@ -19,7 +21,7 @@ export default function TeacherLandingPage({ username, onLogout }) {
 
     return (
         <>
-            <header className="flex items-center justify-between px-4 py-5 mx-auto shadow-md my-1 mx-1 rounded-4xl">
+            <header className="flex items-center justify-between px-4 py-5 mx-auto shadow-md my-1 mx-1 w-full rounded-4xl">
 
                 <Link to="/dashboard" className="flex items-center space-x-2">
                     <img
@@ -55,7 +57,7 @@ export default function TeacherLandingPage({ username, onLogout }) {
                         Calendar
                         <span className="absolute  -bottom-1 left-0 w-full h-0.5 bg-black transform scale-x-0 transition-transform duration-200 ease-out group-hover:scale-x-100" />
                     </Link>
-                    <Link to="videocall" className="flex gap-2 relative group text-gray-700 hover:text-black gsapNav">
+                    <Link to="/videocall" className="flex gap-2 relative group text-gray-700 hover:text-black gsapNav">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="inline lucide lucide-video-icon lucide-video"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5" /><rect x="2" y="6" width="14" height="12" rx="2" /></svg>
                         Meet
                         <span className="absolute  -bottom-1 left-0 w-full h-0.5 bg-black transform scale-x-0 transition-transform duration-200 ease-out group-hover:scale-x-100" />

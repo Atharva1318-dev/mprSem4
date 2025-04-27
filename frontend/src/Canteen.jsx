@@ -593,7 +593,7 @@ const Canteen = () => {
                 fullWidth
                 onClick={handleCheckout}
                 disabled={cart.length === 0 || loading}
-                className="bg-white text-indigo-700 hover:bg-gray-100 font-medium py-3 rounded-full"
+                className=" text-indigo-700 hover:bg-gray-100 font-medium py-3 rounded-full"
                 startIcon={loading ? <CircularProgress size={20} /> : <ShoppingCart />}
               >
                 {loading ? "Processing..." : "Checkout"}

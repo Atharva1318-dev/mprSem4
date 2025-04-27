@@ -5,9 +5,10 @@ import { BookOpen, Calendar, Code, Train, Coffee, Bot } from "lucide-react";
 import studentImg from "../src/assets/student.png";
 import studentMobileImg from "../src/assets/studentMobile.png";
 import './StudentHome.css';
+import React from 'react';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-gsap.registerPlugin(ScrollTrigger);
 
 export default function StudentHome({ username, onLogout }) {
     const [isOpen, setIsOpen] = useState(false);
@@ -21,16 +22,18 @@ export default function StudentHome({ username, onLogout }) {
     const prodRight = useRef(null);
 
     const trust = useRef(null);
-
     //ye mulitple cheezo ko select karne mai kaam nahi aega, ek specific ko point karnekeliye nahi isliye class selector use karo
     //const features = useRef(null);
-
     const featuresSection = useRef(null);
 
     const tl = gsap.timeline({
-        delay: 2,
+        delay: 1.2,
     });
+
     useGSAP(() => {
+        gsap.registerPlugin(ScrollTrigger);
+
+        // normal animations inside timeline
         tl.from(leftColRef.current, {
             x: -100,
             opacity: 0,
@@ -45,13 +48,13 @@ export default function StudentHome({ username, onLogout }) {
             ease: 'power3.out',
         }, '-=0.7');
 
-        tl.from(".features", {
+        
+        gsap.from(".features", {
             scrollTrigger: {
                 scroller: "body",
                 trigger: ".featuresSection",
                 start: "top 45%",
                 end: "top 0%",
-                //markers: true,
                 scrub: true,
             },
             y: 32,
@@ -59,49 +62,43 @@ export default function StudentHome({ username, onLogout }) {
             duration: 3.5,
             ease: 'power.in',
             stagger: 0.7,
-            toggleActions: "play reverse play reverse"
         });
 
-        tl.from(prodLeft.current, {
+        gsap.from(prodLeft.current, {
             scrollTrigger: {
                 scroller: "body",
                 trigger: prodLeft.current,
-                start: "top 48%",
-                end: "top 30%",
-                //markers: true,
+                start: "top 45%",
+                end: "top 15%",
                 scrub: true,
             },
             x: -100,
             opacity: 0,
-            duration: 1,
+            duration: 3.8,
             ease: 'power.in',
-            toggleActions: "play reverse play reverse"
         });
 
-        tl.from(prodRight.current, {
+        gsap.from(prodRight.current, {
             scrollTrigger: {
                 scroller: "body",
                 trigger: prodRight.current,
-                start: "top 48%",
-                end: "top 30%",
-                //markers: true,
+                start: "top 45%",
+                end: "top 15%",
                 scrub: true,
             },
             x: 100,
             opacity: 0,
             delay: 0.2,
-            duration: 1,
+            duration: 2,
             ease: 'power.in',
-            toggleActions: "play reverse play reverse"
         });
 
-        tl.from(ready.current, {
+        gsap.from(ready.current, {
             scrollTrigger: {
                 scroller: "body",
                 trigger: ready.current,
                 start: "top 45%",
                 end: "top 0%",
-                //markers: true,
                 scrub: true,
             },
             y: 32,
@@ -109,30 +106,28 @@ export default function StudentHome({ username, onLogout }) {
             duration: 3.5,
             ease: 'power.in',
             stagger: 0.7,
-            toggleActions: "play reverse play reverse"
-        })
+        });
 
-        tl.from(trust.current, {
+        gsap.from(trust.current, {
             scrollTrigger: {
                 scroller: "body",
                 trigger: trust.current,
                 start: "top 44%",
                 end: "top 0%",
                 scrub: true,
-                ease: 'power.in',
             },
             y: 32,
             opacity: 0,
             duration: 1,
             ease: 'power.in',
-            toggleActions: "play reverse play reverse"
-        })
+        });
 
     }, []);
 
+
     return (
-        <div className="flex flex-col min-h-screen w-full bg-white">
-            <div className="container-fluid w-full mx-auto px-2 md:px-6">
+        <div className="container-fluid flex flex-col min-h-screen w-full bg-white overflow-x-hidden">
+            <div className="w-full mx-auto px-2 md:px-6">
                 <main className="w-full px-1">
                     <section className="relative overflow-visible">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
@@ -395,7 +390,7 @@ export default function StudentHome({ username, onLogout }) {
                                 </div>
                                 <h3 className="text-xl font-bold mb-3">Chat Bot</h3>
                                 <p className="text-gray-600 mb-4">
-                                Experience 24/7 assistance with our smart Chatbot, designed to solve doubts, generate images, and tackle problems effortlessly.
+                                    Experience 24/7 assistance with our smart Chatbot, designed to solve doubts, generate images, and tackle problems effortlessly.
                                 </p>
                                 <Link to="chatbot" className="text-black font-medium flex items-center">
                                     Learn more
@@ -418,7 +413,7 @@ export default function StudentHome({ username, onLogout }) {
                         </div>
                     </section>
                     {/* Experience the Workflow Section */}
-                    {/* <section className="py-24 relative overflow-hidden">
+                    <section className="py-24 relative overflow-hidden">
                         <div className="absolute -z-10 right-0 top-0 w-[600px] h-[600px] bg-orange-400 rounded-full opacity-10"></div>
                         <div className="absolute -z-10 left-0 bottom-0 w-[400px] h-[400px] bg-purple-600 rounded-full opacity-10"></div>
 
@@ -506,14 +501,14 @@ export default function StudentHome({ username, onLogout }) {
                                     </div>
                                 </div>
                             </div>
-                            <div className="relative" ref={prodRight}>
-                                <img
-                                    src="/placeholder.svg?height=500&width=500"
-                                    alt="Campus app features showcase"
-                                    width={500}
-                                    height={500}
-                                    className="mx-auto rounded-xl shadow-lg"
-                                />
+                            <div className="relative hidden md:inline" ref={prodRight}>
+                                <div className="border rounded-3xl shadow-lg mx-10">
+                                    <DotLottieReact
+                                        src="https://lottie.host/e196c9c3-2d8f-4808-9b66-28a71500c060/qVNS98ACCW.lottie"
+                                        loop
+                                        autoplay
+                                    />
+                                </div>
 
                                 <div className="absolute -top-10 -left-10 bg-white rounded-xl shadow-lg p-4 z-20">
                                     <div className="flex items-center gap-3">
@@ -566,7 +561,7 @@ export default function StudentHome({ username, onLogout }) {
                                 </div>
                             </div>
                         </div>
-                    </section> */}
+                    </section>
                     {/* Call-to-Action Section */}
                     <section className="py-24 bg-black text-white rounded-3xl" ref={ready}>
                         <div className="container mx-auto px-4 text-center">
@@ -581,7 +576,7 @@ export default function StudentHome({ username, onLogout }) {
                             </button>
                         </div>
                     </section>
-                    {/* Trusted by Leading Institutions Section */}
+
                     <section className="py-24" ref={trust}>
                         <div className="text-center mb-16">
                             <h2 className="text-3xl font-bold mb-4">Trusted by Leading Institutions</h2>

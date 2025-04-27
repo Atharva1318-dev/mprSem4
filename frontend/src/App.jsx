@@ -33,16 +33,20 @@ function App() {
                     setUsername(data.user);
 
                     console.log(data);
-                    /*Agar hum dashboard pe nahi honge tohi dashboard pe navigate karo, kyuki agar already dashboard pe honge and ab dashboard se nested routing pe jana honga toh iske karan hum forcegully dashboard pe hi atke padenge */
-                    if (!location.pathname.startsWith("/dashboard")) {
+                    /*Agar hum dashboard pe nahi honge tohi dashboard pe navigate karo, kyuki agar already dashboard pe honge and ab dashboard se nested routing pe jana honga toh iske karan hum forcefully dashboard pe hi atke padenge */
+                    if (!location.pathname.startsWith("/dashboard") && !location.pathname.startsWith("/videocall") && !location.pathname.startsWith("/videocall/room/")) {
                         navigate("/dashboard");
                     }
                 } else {
-                    navigate("/auth");
+                    if (!location.pathname.startsWith("/auth") && !location.pathname.startsWith("/videocall/room/")) {
+                        navigate("/auth");
+                    }
                 }
             } catch (err) {
                 console.error("Error verifying cookie:", err);
-                navigate("/auth");
+                if (!location.pathname.startsWith("/auth") && !location.pathname.startsWith("/videocall/room/")) {
+                    navigate("/auth");
+                }
             }
             setLoading(false);
         };
@@ -67,14 +71,14 @@ function App() {
     return (
         <Routes>
             <Route path="/auth" element={<UserAuth />} />
+            <Route path="/videocall/room/:id" element={<VideocallRoom />} />
+            <Route path="/videocall" element={<VideoCallHome />} />
             {role === "teacher" ? (
                 <>
                     <Route path="/dashboard" element={<TeacherLandingPage username={username} onLogout={Logout} />} >
                         <Route index element={<TeacherHome username={username} onLogout={Logout} />} />
                         <Route path="pdfForm" element={<PdfForm username={username} />} />
                         <Route path="calendar" element={<Calendar />} />
-                        <Route path="videocall" element={<VideoCallHome />} />
-                        <Route path="videocall/room/:id" element={<VideocallRoom />} />
                     </Route>
                 </>
             ) : role === "student" ? (
@@ -90,7 +94,7 @@ function App() {
                     </Route>
                 </>
             ) : (
-                <Route path="*" element={<UserAuth />} />
+                null
             )}
         </Routes>
     );
