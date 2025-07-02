@@ -22,7 +22,7 @@ Coming soon…
 
 Watch a short video walkthrough of EduWorld:
 
-[Demo Video]
+[Demo Video](https://github.com/user-attachments/assets/a765423f-36b3-45d4-bff9-6e7ba31fc9f0)
 
 ---
 
