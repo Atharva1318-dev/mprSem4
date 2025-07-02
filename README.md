@@ -33,6 +33,36 @@ EduWorld unifies essential campus services into a single platform. Built on the 
 
 ---
 
+## 🛠️ Tech Stack
+
+### Frontend
+- React.js (Vite)
+- Tailwind CSS & Material UI
+- React Router DOM
+- FullCalendar (daygrid, timegrid, interaction)
+- GSAP & Lottie (animations)
+- Axios (HTTP requests)
+
+### Backend
+- Node.js & Express.js
+- Twilio SDK (WhatsApp notifications)
+
+### Database
+- MongoDB (MongoDB Atlas)
+- Mongoose
+
+### Authentication & Security
+- JWT (jsonwebtoken)
+- bcrypt.js
+- dotenv
+
+### File Handling & Storage
+- Multer (file upload)
+- Cloudinary (PDF storage)
+
+---
+
+
 ## 👥 My Contributions  
 - Designed and implemented **Student & Teacher portals** (layout, nested routing, navigation)  
 - Developed **Notes section**: file upload form, backend routes, student retrieval UI  
@@ -41,44 +71,6 @@ EduWorld unifies essential campus services into a single platform. Built on the 
 - Implemented **Canteen flow**: order schema & routes, random orderNumber generator, frontend placeOrder, Twilio WhatsApp API notification logic
 
 ---
-
-🛠️ Tech Stack:
-Frontend:
-React.js (with Vite)
-
-Tailwind CSS & Material UI
-
-React Router DOM
-
-FullCalendar (daygrid, timegrid, interaction)
-
-GSAP & Lottie (animations)
-
-Axios (HTTP requests)
-
-Backend:
-Node.js & Express.js
-
-Twilio SDK (WhatsApp notifications)
-
-Database:
-MongoDB (MongoDB Atlas)
-
-Mongoose
-
-Authentication & Security:
-JWT (jsonwebtoken)
-
-bcrypt.js
-
-dotenv
-
-File Handling & Storage:
-Multer (file upload)
-
-Cloudinary (PDF storage)
-
-
 
 ## 🚀 Installation & Setup
 
