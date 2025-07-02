@@ -35,15 +35,15 @@ export default function TeacherLandingPage({ username, onLogout }) {
 
     return (
         <>
-            <header className="flex items-center justify-between px-4 py-5 mx-auto shadow-lg mt-1 mx-2 rounded-[47px]">
+            <header className="sticky top-0 z-40 bg-white flex items-center justify-between px-4 py-4 mx-auto w-full shadow-lg mt-1 mx-2 rounded-[47px]">
 
                 <Link to="/dashboard" className="flex items-center space-x-2">
                     <img
                         src="../src/assets/navbarLogo.jpeg"
                         alt="Logo"
-                        className="h-10 w-14 object-cover"
+                        className="h-6 w-9 md:h-10 md:w-14 object-cover"
                     />
-                    <span className="font-bold text-2xl gsapNav">EduWorld</span>
+                    <span className="font-bold text-lg md:text-2xl gsapNav">EduWorld</span>
                 </Link>
                 <nav className="hidden md:flex items-center space-x-8">
                     <Link to="pdfForm" className="flex gap-2 relative group text-gray-700 hover:text-black gsapNav">

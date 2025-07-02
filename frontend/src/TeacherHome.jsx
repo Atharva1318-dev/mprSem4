@@ -99,7 +99,7 @@ export default function TeacherHome({ username, onLogout }) {
                     <section className="relative">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
                             <div className="z-10 order-2 md:order-1" ref={leftColRef}>
-                                <p className="text-gray-600 mb-2">Teacher portal</p>
+                                <p className="text-gray-600 text-lg md:text-2xl mb-2">Teacher portal</p>
                                 <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8  text-orange-400">
                                     Empower
                                     <br />

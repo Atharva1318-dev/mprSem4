@@ -132,9 +132,9 @@ function HomeChat() {
             </div>
 
             <div className="mt-6 text-center">
-              <p className="text-gray-400 text-sm">
+              {/* <p className="text-gray-400 text-sm">
                 Try asking about campus facilities, course schedules, or assignments
-              </p>
+              </p> */}
             </div>
           </div>
         ) : (
