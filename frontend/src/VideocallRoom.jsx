@@ -9,8 +9,8 @@ const VideocallRoom = () => {
 
   useEffect(() => {
     const myMeeting = async () => {
-      const appID = 1344802977;
-      const serverSecret = "7e1a73ac219d75be8c3b147c61413374";
+      const appID = ;
+      const serverSecret = "";
       const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(
         appID,
         serverSecret,
