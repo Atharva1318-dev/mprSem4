@@ -1,6 +1,6 @@
 import { prevUser } from "./UserContextChat";
 const Api_Url =
-  "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyBuwOjFcY8x1ztaBj2gjLMeRncejxs9-r0";
+  "";
 console.log(Api_Url);
 export async function generateResponse() {
   let RequestOption = {
