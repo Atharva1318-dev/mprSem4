@@ -13,11 +13,6 @@ EduWorld is a MERN‑stack web application that streamlines campus life for stud
 
 ---
 
-## 🌐 Live Demo  
-Coming soon…
-
----
-
 ## 🎥 Demo Video
 
 Watch a short video walkthrough of EduWorld:
