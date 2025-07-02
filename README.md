@@ -18,6 +18,14 @@ Coming soon…
 
 ---
 
+## 🎥 Demo Video
+
+Watch a short video walkthrough of EduWorld:
+
+[Demo Video]
+
+---
+
 ## 📚 Description  
 EduWorld unifies essential campus services into a single platform. Built on the MERN stack (MongoDB, Express.js, React, Node.js) and styled with Tailwind CSS & Material UI, it features secure JWT‑based authentication, Cloudinary file storage, and Twilio WhatsApp API integration for order notifications.
 
